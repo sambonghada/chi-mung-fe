@@ -6,8 +6,11 @@ import heartIMG from "../assets/heart.png";
 import FruitStemIMG from "../assets/FruitStem.png";
 import { useNavigate } from "react-router-dom";
 import { useGame } from '../components/GameContext'
+import axios from "axios";
 
-const baseWords = [
+
+
+const MockUP = [
   { word: "세히", meaning: "꼼꼼히" },
   { word: "졸바로", meaning: "올바르게" },
   { word: "히지부지", meaning: "흐지부지" },
@@ -30,7 +33,7 @@ const baseWords = [
 ];
 
 const generateInitialWords = (level) =>
-  baseWords.map((word, index) => ({
+  MockUP.map((word, index) => ({
     ...word,
     xPos: Math.random() * 80 + 10,
     id: index + 1,
@@ -288,6 +291,18 @@ function WordPage() {
   const timerRef = useRef(null);
   const navigate = useNavigate();
   const { setScore } = useGame();
+  const [baseWords, setBaseWords] = useState([])
+
+  useEffect(() => {
+    // Replace 'your-backend-url' with your actual API endpoint
+    axios.get('https://k5d881cb764f0a.user-app.krampoline.com/api/word/random/100')
+        .then(response => {
+          setBaseWords(response.data); // Assuming the response data is an array of rankings
+        })
+        .catch(error => {
+          console.error('Error fetching rankings:', error);
+        });
+  }, []);
 
   const navigateOver = () => {
     setScore(localScore);
@@ -336,8 +351,13 @@ function WordPage() {
       } else if (!gameOver && words.length === 0) {
         setLevel((prevLevel) => {
           const newLevel = prevLevel + 1;
-          if (newLevel <= 10) {
-            setWords(generateInitialWords(newLevel));
+          if (newLevel < 10) {
+            if (baseWords && baseWords.length > 0) {
+              setWords(baseWords[newLevel]);
+            }
+            else{
+              setWords(generateInitialWords(newLevel));
+            }
           }
           return newLevel;
         });
