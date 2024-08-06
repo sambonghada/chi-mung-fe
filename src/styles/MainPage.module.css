@@ -46,11 +46,11 @@
 }
 
 .LongBtn_text {
-    font-size: 60px;
+    font-size: 50px;
     font-weight: 900;
     color: black;
     /*margin: 0px 0px 40px 0px;*/
-    padding: 10px 30px;
+    padding: 15px 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -64,7 +64,7 @@
     border-radius: 30px;
     margin-top: 20px;
     padding: 20px 30px;
-    font-size: 80px;
+    font-size: 70px;
     color: black;
     display: flex;
     justify-content: center;

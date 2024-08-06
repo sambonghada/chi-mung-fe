@@ -1,0 +1,21 @@
+.container {
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: top;
+    overflow: hidden;
+
+}
+
+.note {
+    width: 1360px;
+    height: 90vh;
+    background-image: url('../assets/dictationNote.png');
+    background-size: cover  ; /* Optional: adjust to ensure the image covers the entire background */
+    background-repeat: no-repeat; /* Optional: prevent the image from repeating */
+    background-position: center; /* Optional: center the image */
+}

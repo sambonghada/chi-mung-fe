@@ -16,6 +16,57 @@
     background-size: cover;
     background-position: bottom;
     overflow: hidden;
+    position: relative;
+}
+
+.cornerLeaf {
+    position: absolute;
+    right: -5px;
+    top: 0;
+    width: 450px;
+    z-index: 1;
+}
+
+/*.cornerBranch {*/
+/*    position: absolute;*/
+/*    right: -5px;*/
+/*    top: 0;*/
+/*    width: 480px;*/
+/*}*/
+
+.cornerBranch {
+    position: absolute;
+    right: -5px;
+    top: 0;
+    width: 480px;
+    animation: rotateAnimation 4s infinite; /* 4초간 애니메이션 반복, 무한 반복 */
+}
+
+@keyframes rotateAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(10deg); /* 첫 번째 회전 */
+    }
+    50% {
+        transform: rotate(-10deg); /* 두 번째 회전 */
+    }
+    75% {
+        transform: rotate(-15deg); /* 멈춤 상태 */
+    }
+    100% {
+        transform: rotate(-20deg); /* 멈춤 상태 */
+    }
+}
+
+.paperPlaneContainer {
+    width: 180px;
+    height: 180px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
 }
 
 .logo_container {
@@ -47,18 +98,81 @@
     font-family: 'EF_jejudoldam', sans-serif;
 }
 
-.btn {
-    justify-self: flex-end;
-    border: #fff solid 3px;
-    padding: 20px;
-    border-radius: 50px;
-    width: 280px;
-    text-align: center;
-    font-size: 34px;
-    background-color: #757374;
-    color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-}
+/*.btn {*/
+/*    justify-self: flex-end;*/
+/*    border: #fff solid 3px;*/
+/*    padding: 20px;*/
+/*    border-radius: 50px;*/
+/*    width: 280px;*/
+/*    text-align: center;*/
+/*    font-size: 34px;*/
+/*    background-color: #757374;*/
+/*    color: #fff;*/
+/*    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;*/
+/*}*/
 
 
 /*버튼 =======>*/
+.btn {
+    border-radius: 50px;
+    font-size: 32px;
+    font-weight: 400;
+    background-color: #757374;
+    color: #fff;
+    outline: none;
+    position: relative;
+    border: #fff solid 3px;
+    height: 65px;
+    padding: 15px 70px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn:before {
+    content: attr(data-hover);
+    position: absolute;
+    top: 0.6em;
+    left: 0;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 800;
+    font-size: .8em;
+    opacity: 0;
+    transform: translate(-100%, 0);
+    transition: all .3s ease-in-out;
+}
+
+.btn:hover:before {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.btn div {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 800;
+    font-size: .8em;
+    transition: all .3s ease-in-out;
+}
+
+.btn:hover div {
+    opacity: 0;
+    transform: translate(100%, 0);
+}
+
+.effect5 {
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 900px) {
+    .cornerLeaf,
+    .cornerBranch,
+    .paperPlaneContainer {
+        display: none;
+    }
+}
