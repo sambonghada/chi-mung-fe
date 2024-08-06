@@ -1,7 +1,7 @@
 // import React from 'react';
 import { FaCrown } from 'react-icons/fa';
 import LongBtn from '../assets/Longbtn.png';
-import background from '../assets/chi-mung-bg.png';
+import background from '../assets/mainBg.png';
 import styles from '../styles/MainPage.module.css';
 import { useNavigate } from 'react-router-dom';
 

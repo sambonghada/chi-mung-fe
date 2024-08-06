@@ -1,0 +1,21 @@
+.container {
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-size: cover;
+    background-position: top;
+    overflow: hidden;
+    padding-top: 60px;
+}
+
+.innerContainer {
+    width: 70%;
+}
+
+.innerTopContainer {
+    /*width: 70%;*/
+    background-color: red;
+}
