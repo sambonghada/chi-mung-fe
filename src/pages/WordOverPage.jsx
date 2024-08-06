@@ -32,7 +32,7 @@ const WordOverPage = () => {
       category: "word",
     };
 
-    fetch("http://localhost:8080/api/scores", {
+    fetch("https://k5d881cb764f0a.user-app.krampoline.com/api/scores", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
