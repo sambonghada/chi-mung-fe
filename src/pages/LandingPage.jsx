@@ -1,55 +1,72 @@
 import React from 'react';
+import BackgroundImage from '../assets/chi-mung-bg.png';
+import Shortbtn from '../assets/Shortbtn.png';
 
-// You can replace 'PageComponent' with the name of your component
 const LandingPage = () => {
     return (
         <div style={styles.container}>
-            <header style={styles.header}>
-                <h1 style={styles.title}>Welcome to My Page</h1>
-            </header>
-            <main style={styles.main}>
-                <p style={styles.text}>
-                    This is a default page template. You can customize it as needed.
-                </p>
-            </main>
-            <footer style={styles.footer}>
-                <p style={styles.footerText}>© 2024 My Company</p>
-            </footer>
+            <div style={styles.logo_container}>
+                <div style={styles.logo}><p style={styles.logo_text}>배</p></div>
+                <div style={styles.logo}><p style={styles.logo_text}>우</p></div>
+                <div style={styles.logo}><p style={styles.logo_text}>멍</p></div>
+                <div style={styles.logo}><p style={styles.logo_text}>치</p></div>
+                <div style={styles.logo}><p style={styles.logo_text}>멍</p></div>
+            </div>
+            <div style={styles.btn}>혼저옵서예</div>
         </div>
     );
 };
 
-// Styles (optional, replace with your preferred styling method)
 const styles = {
     container: {
-        fontFamily: 'Arial, sans-serif',
-        color: '#333',
-        padding: '20px',
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundImage: `url(${BackgroundImage})`,
+        backgroundSize: 'cover',
+        overflow: 'hidden',
+    },
+    logo_container: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap-reverse',
+        width: '550px',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '10px',
+    },
+    logo: {
+        backgroundImage: `url(${Shortbtn})`,
+        width: '150px',
+        height: '150px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+    },
+    logo_text: {
+      fontSize: '60px',
+      fontWeight: '900',
+      color: 'black',
+      marginBottom: '80px',
+    },
+    btn:{
+        justifySelf: 'flex-end',
+        border: '#000000 solid 3px',
+        padding: '10px',
+        borderRadius: '50px',
+        width: '300px',
+        height: 'include',
         textAlign: 'center',
-        backgroundColor: '#f4f4f4',
+        fontSize: '40px',
+        backgroundColor: '#fffdeb',
+        color: '#000000',
     },
-    header: {
-        marginBottom: '20px',
-    },
-    title: {
-        fontSize: '2.5em',
-        margin: 0,
-    },
-    main: {
-        margin: '20px 0',
-    },
-    text: {
-        fontSize: '1.2em',
-    },
-    footer: {
-        marginTop: '20px',
-        borderTop: '1px solid #ddd',
-        paddingTop: '10px',
-    },
-    footerText: {
-        fontSize: '0.9em',
-        color: '#666',
-    },
-};
+}
 
 export default LandingPage;
