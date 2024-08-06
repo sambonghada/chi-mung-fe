@@ -1,55 +1,143 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import Background from '../assets/paragraph_bg.png';
+// Lorem Ipsum 텍스트 생성 함수
+const generateLoremIpsum = () => {
+    const text = "옛날에 선문대할망이라는 할머니가 있었다. 이 할머니는 한라산을 베개 삼고 누우면 다리는 제주시 앞 바다에 있는 관탈섬에 걸쳐졌다 한다. 이 할머니는 빨래를 하려면 빨래를 관탈섬에 놓아 발로 밟고, 손은 한라산 꼭대기를 짚고 서서 발로 문질러 빨았다 한다. 또 다른 이야기에는 한라산을 엉덩이로 깔아 앉아 한 쪽 다리는 관탈섬에 디디고, 한쪽 다리는 서귀포시 앞바다의 지귀섬에 디디고 해서 구좌읍 소섬을 빨래돌로 삼아 빨래를 했다 한다. 어떻든 이 이야기들로 이 여신이 얼마나 거대했었는가를 능히 알 수 있다."
+    return splitTextIntoChunks(text,25)
+};
+const splitTextIntoChunks = (text, chunkSize) => {
+    const chunks = [];
+    let index = 0;
 
-// You can replace 'PageComponent' with the name of your component
-const ParagraphPage = () => {
-    return (
-        <div style={styles.container}>
-            <header style={styles.header}>
-                <h1 style={styles.title}>Welcome to My Page</h1>
-            </header>
-            <main style={styles.main}>
-                <p style={styles.text}>
-                    This is a default page template. You can customize it as needed.
-                </p>
-            </main>
-            <footer style={styles.footer}>
-                <p style={styles.footerText}>© 2024 My Company</p>
-            </footer>
-        </div>
-    );
+    while (index < text.length) {
+        chunks.push(text.slice(index, index + chunkSize).trim());
+        index += chunkSize;
+    }
+
+    return chunks;
 };
 
-// Styles (optional, replace with your preferred styling method)
-const styles = {
-    container: {
-        fontFamily: 'Arial, sans-serif',
-        color: '#333',
-        padding: '20px',
-        textAlign: 'center',
-        backgroundColor: '#f4f4f4',
-    },
-    header: {
-        marginBottom: '20px',
-    },
-    title: {
-        fontSize: '2.5em',
-        margin: 0,
-    },
-    main: {
-        margin: '20px 0',
-    },
-    text: {
-        fontSize: '1.2em',
-    },
-    footer: {
-        marginTop: '20px',
-        borderTop: '1px solid #ddd',
-        paddingTop: '10px',
-    },
-    footerText: {
-        fontSize: '0.9em',
-        color: '#666',
-    },
+const ParagraphPage = () => {
+    const [sentences, setSentences] = useState([]);
+    const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
+    const [inputText, setInputText] = useState('');
+    const [startTime, setStartTime] = useState(null);
+    const [wpm, setWpm] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+    const [pauseDuration, setPauseDuration] = useState(0);
+
+    const typingStarted = useRef(false);
+    const lastInputTime = useRef(null);
+    const timeoutRef = useRef(null);
+
+    useEffect(() => {
+        const loremIpsumSentences = generateLoremIpsum();
+        setSentences(loremIpsumSentences);
+    }, []);
+
+    useEffect(() => {
+        if (!typingStarted.current || isPaused) return;
+
+        const interval = setInterval(() => {
+            const currentTime = Date.now();
+            const totalElapsedTime = (currentTime - startTime - pauseDuration) / 60000; // 분 단위 시간
+            const wordsTyped = inputText.length / 5;
+            setWpm(Math.round(wordsTyped / totalElapsedTime));
+        }, 500);
+
+        return () => clearInterval(interval);
+    }, [inputText, startTime, pauseDuration, isPaused]);
+
+    const handleChange = (e) => {
+        const currentInput = e.target.value;
+
+        if (!typingStarted.current) {
+            typingStarted.current = true;
+            setStartTime(Date.now());
+            lastInputTime.current = Date.now();
+        } else if (isPaused) {
+            const pausedTime = Date.now() - lastInputTime.current;
+            setPauseDuration((prevPauseDuration) => prevPauseDuration + pausedTime);
+            setIsPaused(false);
+        }
+
+        setInputText(currentInput);
+        lastInputTime.current = Date.now();
+
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+
+        timeoutRef.current = setTimeout(() => {
+            setIsPaused(true);
+        }, 2000);
+    };
+
+    const handleKeyUp = (e) => {
+        if (e.key === 'Enter') {
+            // e.preventDefault(); // 줄바꿈 방지
+            if (inputText === sentences[currentSentenceIndex]) {
+                setInputText('');
+                setCurrentSentenceIndex((prevIndex) => prevIndex + 1);
+                setWpm(0);
+                typingStarted.current = false;
+                setPauseDuration(0);
+            }
+        }
+    };
+
+    const renderSentenceWithHighlights = () => {
+        const currentSentence = sentences[currentSentenceIndex];
+        const inputLength = inputText.length;
+        if (currentSentence === undefined || currentSentence === null) {
+            return;
+        }
+        return (
+            <>
+                {currentSentence.split('').map((char, index) => {
+                    const isCorrect = inputText[index] === char;
+                    const isExtra = index >= inputLength;
+
+                    return (
+                        <span
+                            key={index}
+                            style={{
+                                color: !isCorrect && !isExtra ? 'red' : 'white',
+                                boxShadow: !isExtra && isCorrect ? 'inset 0 -10px 0 green' : 'none'
+                            }}
+                        >
+                            {char}
+                        </span>
+                    );
+                })}
+            </>
+        );
+    };
+
+    return (
+        <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto', backgroundImage: `url(${Background})` }}>
+            <h1>Typing Practice Game</h1>
+            <div style={{ fontSize: '18px', lineHeight: '1.5', marginBottom: '20px' }}>
+                <p style={{ color: '#aaa', marginBottom: '10px' }}>
+                    {currentSentenceIndex > 0 ? sentences[currentSentenceIndex - 1] : ''}
+                </p>
+                <p style={{ fontWeight: 'normal', marginBottom: '10px' }}>
+                    {renderSentenceWithHighlights()}
+                </p>
+                <p style={{ color: '#aaa' }}>
+                    {currentSentenceIndex < sentences.length - 1 ? sentences[currentSentenceIndex + 1] : ''}
+                </p>
+            </div>
+            <input
+                value={inputText}
+                onChange={handleChange}
+                onKeyUp={handleKeyUp}
+                placeholder="Start typing here..."
+                style={{ width: '100%', height: '100px', fontSize: '16px', padding: '10px' }}
+            />
+            <p>Words Per Minute (WPM): {wpm}</p>
+        </div>
+    );
 };
 
 export default ParagraphPage;
