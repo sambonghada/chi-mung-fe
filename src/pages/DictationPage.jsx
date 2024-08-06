@@ -6,11 +6,11 @@ import background from '../assets/dictationBg.png';
 import { Howl } from 'howler';
 
 const questions = [
-    { audioSrc: '/src/assets/sound/흥창망창.mp3', correctAnswer: '안녕하수깡 - 안녕하세요' },
-    { audioSrc: '/src/assets/sound/흥창망창.mp3', correctAnswer: '안녕하수깡 - 안녕하세요' },
-    { audioSrc: '/src/assets/sound/흥창망창.mp3', correctAnswer: '안녕하수깡 - 안녕하세요' },
-    { audioSrc: '/src/assets/sound/흥창망창.mp3', correctAnswer: '안녕하수깡 - 안녕하세요' },
-    { audioSrc: '/src/assets/sound/흥창망창.mp3', correctAnswer: '안녕하수깡 - 안녕하세요' },
+    { audioSrc: '/src/assets/sound/흥창망창.mp3', description: '문제 1 설명', correctAnswer: '안녕하수깡 - 안녕하세요' },
+    { audioSrc: '/src/assets/sound/흥창망창.mp3', description: '문제 2 설명', correctAnswer: '안녕하수깡 - 안녕하세요' },
+    { audioSrc: '/src/assets/sound/흥창망창.mp3', description: '문제 3 설명', correctAnswer: '안녕하수깡 - 안녕하세요' },
+    { audioSrc: '/src/assets/sound/흥창망창.mp3', description: '문제 4 설명', correctAnswer: '안녕하수깡 - 안녕하세요' },
+    { audioSrc: '/src/assets/sound/흥창망창.mp3', description: '문제 5 설명', correctAnswer: '안녕하수깡 - 안녕하세요' },
 ];
 
 const StyledDictationItem = styled.div`
@@ -44,16 +44,11 @@ const StyledInput = styled.input`
   border-radius: 3px;
 `;
 
-const DictationItem = ({ audioSrc, correctAnswer, index }) => {
+const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswers }) => {
     const [answer, setAnswer] = useState('');
-    const [result, setResult] = useState('');
 
     const handleInputChange = (e) => {
         setAnswer(e.target.value);
-    };
-
-    const handleCheckAnswer = () => {
-        setResult(`${answer} (${correctAnswer})`);
     };
 
     const playAudio = () => {
@@ -67,7 +62,7 @@ const DictationItem = ({ audioSrc, correctAnswer, index }) => {
     return (
         <StyledDictationItem>
             <StyledQuestion>
-                <span>{index + 1}번 문제.</span>
+                <span>{index + 1}번 문제: {description}</span>
                 <StyledButton $play onClick={playAudio}>재생</StyledButton>
             </StyledQuestion>
             <StyledInput 
@@ -76,13 +71,18 @@ const DictationItem = ({ audioSrc, correctAnswer, index }) => {
                 onChange={handleInputChange} 
                 placeholder="답을 입력하세요"
             />
-            {result && <div className="result">{result}</div>}
-            <StyledButton onClick={handleCheckAnswer}>정답 확인</StyledButton>
+            {showAnswers && <div className="result">정답: {correctAnswer}</div>}
         </StyledDictationItem>
     );
 };
 
 const DictationPage = () => {
+    const [showAnswers, setShowAnswers] = useState(false);
+
+    const handleShowAnswers = () => {
+        setShowAnswers(true);
+    };
+
     return (
         <div className="container" style={{ backgroundImage: `url(${background})` }}>
             <div className="note">
@@ -91,11 +91,14 @@ const DictationPage = () => {
                         <DictationItem 
                             key={index} 
                             audioSrc={question.audioSrc} 
+                            description={question.description}
                             correctAnswer={question.correctAnswer}
                             index={index}
+                            showAnswers={showAnswers}
                         />
                     ))}
                 </div>
+                <StyledButton onClick={handleShowAnswers}>모든 정답 보기</StyledButton>
             </div>
         </div>
     );
