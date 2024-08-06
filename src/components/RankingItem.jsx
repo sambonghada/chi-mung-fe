@@ -1,17 +1,17 @@
 import React from 'react';
 import styles from '../styles/whiteRankingItem.module.css';
 
-const RankingItem = ({ backgroundColor }) => {
+const RankingItem = ({index, username, score}) => {
 
     return (
-        <div className={styles.container} style={{ backgroundColor }}>
+        <div className={styles.container} style={{backgroundColor:"white"}} >
             <div className={styles.ranking}>
-                1
+                {index}
             </div>
             <div className={styles.nickname}>
-                쥬디공쥬
+                {username}
             </div>
-            <div className={styles.score}>30점</div>
+            <div className={styles.score}>{score}점</div>
 
         </div>
     );

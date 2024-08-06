@@ -1,5 +1,5 @@
 // WordOverPage.jsx
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import styles from "../styles/WordOverPage.module.css";
 import background from "../assets/background.png";
 import RankingItem from "../components/RankingItem.jsx";
@@ -8,6 +8,7 @@ import LongBtn from "../assets/Longbtn.png";
 import { MdOutlineReplay } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../components/GameContext.jsx";
+import axios from "axios";
 
 const WordOverPage = () => {
   const navigate = useNavigate();
@@ -49,6 +50,18 @@ const WordOverPage = () => {
       });
   };
 
+  const [rankings, setRankings] = useState([]);
+  useEffect(() => {
+    // Replace 'your-backend-url' with your actual API endpoint
+    axios.get('https://k5d881cb764f0a.user-app.krampoline.com/api/scores/top10/word')
+        .then(response => {
+          setRankings(response.data); // Assuming the response data is an array of rankings
+        })
+        .catch(error => {
+          console.error('Error fetching rankings:', error);
+        });
+  }, []);
+
   return (
     <div
       className={styles.container}
@@ -68,10 +81,9 @@ const WordOverPage = () => {
         </div>
       </div>
       <div className={styles.rankingContainer}>
-        {Array(10)
-          .fill()
-          .map((_, index) => (
-            <RankingItem key={index} backgroundColor="white" />
+        {rankings
+          .map((data, index) => (
+            <RankingItem key={index} index={index+1} username={data? data.username : "하이든"} score={data? data.score : 30}/>
           ))}
       </div>
       <div className={styles.btnContainer}>
