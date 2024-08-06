@@ -17,6 +17,7 @@
     background-repeat: no-repeat;
 }
 
+
 .note {
     /*background: rgba(255, 255, 255, 0.9);*/
     padding: 20px;
@@ -36,16 +37,26 @@
     display: flex;
 }
 
+
+.questionIcon {
+    position: absolute;
+    top: -10px;
+    right: 40px;
+    z-index: 10;
+    font-size: 40px;
+    cursor: pointer;
+}
+
 .itemContainer {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 800px;
 
-
     position: absolute;
     top: 80px;
     /*left: 50px;*/
+
 }
 
 
@@ -61,17 +72,26 @@
 
 }
 
+.answer {
+    width: 60px;
+    position: absolute;
+    top: 5px;
+}
+
 .itemTopContainer {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
 
 }
 
 .question {
     display: flex;
-    justify-content: space-between;
+    /*justify-content: space-around;*/
     align-items: center;
-    font-size: 18px;
+    font-size: 16px;
+
 
 }
 
@@ -82,18 +102,33 @@
     padding: 5px 10px;
     border-radius: 3px;
     cursor: pointer;
-    margin-left: 20px;
 }
 
 .input {
-    width: 420px;
+    width: 350px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
     margin-left: 10px;
 }
 
+.btnConrainer {
+    position: absolute;
+    bottom: 80px;
+    display: flex;
+    flex-direction: row;
+}
 
+.btnConrainer button:hover {
+    filter: brightness(0.8);
+
+}
+
+.result {
+    color: red;
+    margin-left: 410px;
+    font-size: 14px;
+}
 
 
 
@@ -104,8 +139,6 @@
     /*padding: 5px 10px;*/
     border-radius: 3px;
     cursor: pointer;
-    position: absolute;
-    bottom: 80px;
 
     width: 140px;
     height: 100px;
@@ -116,6 +149,8 @@
     padding-bottom: 12px;
 
     font-size: 18px;
+
+    margin-right: 20px;
 
 }
 
