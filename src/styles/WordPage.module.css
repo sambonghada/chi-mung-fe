@@ -1,0 +1,7 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background: url('/public/background.png') no-repeat center center fixed;
+    background-size: cover;
+}
+  
