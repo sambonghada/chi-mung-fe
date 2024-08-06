@@ -1,9 +1,11 @@
+// WordPage.jsx
 import { useState, useEffect, useRef } from "react";
 import styled, { keyframes, css } from "styled-components";
 import backgroundIMG from "../assets/background.png";
 import heartIMG from "../assets/heart.png";
 import FruitStemIMG from "../assets/FruitStem.png";
 import { useNavigate } from "react-router-dom";
+import { useGame } from '../components/GameContext'
 
 const baseWords = [
   { word: "세히", meaning: "꼼꼼히" },
@@ -275,7 +277,7 @@ function WordPage() {
   const [words, setWords] = useState(generateInitialWords(1));
   const [fallingWords, setFallingWords] = useState([]);
   const [input, setInput] = useState("");
-  const [score, setScore] = useState(0);
+  const [localScore, setLocalScore] = useState(0); 
   const [health, setHealth] = useState(100);
   const [toast, setToast] = useState("");
   const [gameOver, setGameOver] = useState(false);
@@ -285,8 +287,10 @@ function WordPage() {
   const nextId = useRef(9);
   const timerRef = useRef(null);
   const navigate = useNavigate();
+  const { setScore } = useGame();
 
   const navigateOver = () => {
+    setScore(localScore);
     navigate("/word/over");
   };
 
@@ -301,7 +305,7 @@ function WordPage() {
         const newFallingWords = [...fallingWords];
         const removedWord = newFallingWords.splice(wordIndex, 1)[0];
         setFallingWords(newFallingWords);
-        setScore(score + 1);
+        setLocalScore(localScore + 1);
         setToast(`${removedWord.word} - ${removedWord.meaning}`);
         setTimeout(() => setToast(""), 1000);
       }
@@ -381,7 +385,7 @@ function WordPage() {
   const handleRestart = () => {
     setWords(generateInitialWords(1));
     setFallingWords([]);
-    setScore(0);
+    setLocalScore(0);
     setHealth(100);
     setGameOver(false);
     setLevel(1);
@@ -402,7 +406,7 @@ function WordPage() {
         <InfoContainer>
           <Level>Level: {level}</Level>
           <Timer>Timer: {(time / 1000).toFixed(1)}s</Timer>
-          <Score>Score: {score}</Score>
+          <Score>Score: {localScore}</Score>
         </InfoContainer>
       </TopContainer>
       {fallingWords.map((word) => (
@@ -432,7 +436,7 @@ function WordPage() {
       {gameOver && (
         <GameOverScreen>
           <h1>Game Over</h1>
-          <p>점수: {score}</p>
+          <p>점수: {localScore}</p>
           <p>레벨: {level}</p>
           <p>시간: {(time / 1000).toFixed(1)} 초</p>
           <button onClick={handleRestart}>다시 시작</button>

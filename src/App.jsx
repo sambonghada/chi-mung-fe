@@ -8,10 +8,12 @@ import DictationPage from "./pages/DictationPage.jsx";
 import RankingPage from "./pages/RankingPage.jsx";
 import WordOverPage from "./pages/WordOverPage.jsx";
 import ParagraphOverPage from "./pages/WordOverPage.jsx";
+import { GameProvider } from './components/GameContext.jsx';
 
 
 function App() {
     return (
+        <GameProvider>
         <BrowserRouter>
             <div className='container'>
                 <Routes>
@@ -28,6 +30,7 @@ function App() {
         </Routes>
             </div>
 </BrowserRouter>
+</GameProvider>
 )
 }
 
