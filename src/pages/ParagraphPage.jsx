@@ -75,16 +75,15 @@ const ParagraphPage = () => {
     };
 
     const handleKeyUp = (e) => {
-        if (e.key === 'Enter') {
-            if (inputText === sentences[currentSentenceIndex]) {
-                setInputText('');
-                setCurrentSentenceIndex((prevIndex) => prevIndex + 1);
-                setWpm(0);
-                typingStarted.current = false;
-                setPauseDuration(0);
-            }
+        if (e.key === "Enter" && inputText !== "") {
+            e.preventDefault();
+            setInputText('');
+            setCurrentSentenceIndex((prevIndex) => prevIndex + 1);
+            setWpm(0);
+            typingStarted.current = false;
+            setPauseDuration(0);
         }
-    };
+    }
 
     const renderSentenceWithHighlights = () => {
         const currentSentence = sentences[currentSentenceIndex];
@@ -116,6 +115,7 @@ const ParagraphPage = () => {
         );
     };
 
+
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>설화 제목</h1>
@@ -134,7 +134,7 @@ const ParagraphPage = () => {
                 className={styles.inputField}
                 value={inputText}
                 onChange={handleChange}
-                onKeyUp={handleKeyUp}
+                onKeyUp={handleKeyUp}  // IME 입력 종료
                 placeholder="따라쳐보세요...!"
             />
             <p className={styles.wpm}>Words Per Minute (WPM): {wpm}</p>

@@ -1,0 +1,33 @@
+.container {
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../assets/paragraph_bg.png');
+    background-size: cover;
+    background-position: bottom;
+    overflow: hidden;
+}
+
+.buttons {
+    width: 90%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    overflow-y: auto;
+}
+
+.button {
+    width: 300px;
+    height: 100px;
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: #ffffff;
+}
