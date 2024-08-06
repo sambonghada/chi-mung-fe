@@ -1,7 +1,178 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    background: url('/public/background.png') no-repeat center center fixed;
-    background-size: cover;
+@keyframes moveDown {
+    0% {
+        top: -10%;
+    }
+    100% {
+        top: 110%;
+    }
 }
-  
+
+@keyframes moveSideToSide {
+    0% {
+        transform: translateX(-50%) translateX(0);
+    }
+    50% {
+        transform: translateX(-50%) translateX(20px);
+    }
+    100% {
+        transform: translateX(-50%) translateX(0);
+    }
+}
+
+@keyframes vibrate {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    25% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+    75% {
+        transform: translateX(-50%) translateY(5px);
+    }
+}
+
+@keyframes moveUp {
+    0% {
+        top: 100%;
+    }
+    100% {
+        top: -10%;
+    }
+}
+
+@keyframes fadeInOut {
+    0%,
+    100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.gameContainer {
+    width: 100%;
+    height: 100vh;
+    background: url('/src/assets/background.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.wordContainer {
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.wordBubble {
+    position: relative;
+    background: rgb(255, 165, 0);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.fruitStem {
+    position: absolute;
+    top: -15px;
+    left: 55%;
+    transform: translateX(-60%);
+    width: 30px;
+    height: auto;
+}
+
+.topContainer {
+    position: absolute;
+    display: flex;
+    top: 20px;
+    padding-left: 100px;
+    width: 100%;
+    z-index: 1000;
+}
+
+.infoContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.level, .timer, .score {
+    font-size: 1.5rem;
+    color: black;
+}
+
+.inputContainer {
+    position: absolute;
+    bottom: 10%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.input {
+    width: 300px;
+    padding: 10px;
+    font-size: 1.5rem;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.toast {
+    position: absolute;
+    bottom: 20%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    animation: fadeInOut 3s;
+}
+
+.healthBarContainer {
+    width: 80%;
+    margin: 10px auto;
+    height: 30px;
+    background: #f2f2f2;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+.healthBarDiv {
+    height: 100%;
+    transition: width 0.5s;
+    border-radius: 8px;
+    background: #E76461;
+}
+
+.heartIcon {
+    position: relative;
+    height: 50px;
+    width: 100px;
+    background-image: url('/src/assets/heart.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    margin-right: 20px;
+}
+
+.gameOverScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}

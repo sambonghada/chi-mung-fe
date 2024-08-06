@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import styled, { keyframes, css } from "styled-components";
+import {useNavigate} from "react-router-dom";
 
 
 const baseWords = [
@@ -25,12 +26,12 @@ const baseWords = [
 ];
 
 const generateInitialWords = (level) =>
-  baseWords.map((word, index) => ({
-    ...word,
-    xPos: Math.random() * 80 + 10,
-    id: index + 1,
-    animation: getAnimationType(level),
-  }));
+    baseWords.map((word, index) => ({
+      ...word,
+      xPos: Math.random() * 80 + 10,
+      id: index + 1,
+      animation: getAnimationType(level),
+    }));
 
 const moveDown = keyframes`
   0% { top: -10%; }
@@ -116,10 +117,10 @@ const GameContainer = styled.div`
 
 const WordContainer = styled.div`
   position: absolute;
-  top: ${props => (props.animation === "moveUp" ? "100%" : "-10%")};
+  top: ${props => (props.$animation === "moveUp" ? "100%" : "-10%")};
   left: ${props => props.xPos}%;
   transform: translateX(-50%);
-  animation: ${props => getAnimation(props.animation, props.level)};
+  animation: ${props => getAnimation(props.$animation, props.$level)};
 `;
 
 const WordBubble = styled.div`
@@ -141,7 +142,7 @@ const FruitStem = styled.img`
 `;
 
 const TopContainer = styled.div`
-  
+
   position: absolute;
   display: flex;
   top: 20px;
@@ -252,9 +253,9 @@ const GameOverScreen = styled.div`
 
 function HealthBar({ health }) {
   return (
-    <HealthBarContainer>
-      <HealthBarDiv style={{ width: `${health}%` }} health={health} />
-    </HealthBarContainer>
+      <HealthBarContainer>
+        <HealthBarDiv style={{ width: `${health}%` }} health={health} />
+      </HealthBarContainer>
   );
 }
 
@@ -271,6 +272,11 @@ function WordPage() {
   const inputRef = useRef(null);
   const nextId = useRef(9);
   const timerRef = useRef(null);
+  const navigate = useNavigate();
+
+  const navigateOver = () => {
+    navigate('/word/over');
+  }
 
   const handleInputChange = e => setInput(e.target.value);
 
@@ -291,8 +297,10 @@ function WordPage() {
 
   useEffect(() => {
     if (health <= 0 || level > 10) {
+      navigateOver();
       setGameOver(true);
       clearInterval(timerRef.current);
+      // navigate("/over");
     }
   }, [health, level]);
 
@@ -365,47 +373,47 @@ function WordPage() {
   };
 
   return (
-    <GameContainer>
+      <GameContainer>
         <TopContainer>
-            <HeartIcon />
-            <HealthBarContainer> 
-                <HealthBarDiv health={health} style={{ width: `${health}%` }} />
-            </HealthBarContainer>
-            <InfoContainer>
-                <Level>Level: {level}</Level>
-                <Timer>Timer: {(time / 1000).toFixed(1)}s</Timer>
-                <Score>Score: {score}</Score>
-            </InfoContainer>
+          <HeartIcon />
+          <HealthBarContainer>
+            <HealthBarDiv health={health} style={{ width: `${health}%` }} />
+          </HealthBarContainer>
+          <InfoContainer>
+            <Level>Level: {level}</Level>
+            <Timer>Timer: {(time / 1000).toFixed(1)}s</Timer>
+            <Score>Score: {score}</Score>
+          </InfoContainer>
         </TopContainer>
-      {fallingWords.map((word) => (
-        <WordContainer key={word.id} xPos={word.xPos} animation={word.animation} level={level}>
-        <WordBubble id={word.word}>
-          <FruitStem src="/src/assets/FruitStem.png" alt="Fruit Stem" />
-          {word.word}
-        </WordBubble>
-      </WordContainer>
-      ))}
-      <InputContainer>
-        <Input
-          ref={inputRef}
-          type="text"
-          value={input}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          disabled={gameOver}
-        />
-      </InputContainer>
-      {toast && <Toast>{toast}</Toast>}
-      {gameOver && (
-        <GameOverScreen>
-          <h1>Game Over</h1>
-          <p>점수: {score}</p>
-          <p>레벨: {level}</p>
-          <p>시간: {(time / 1000).toFixed(1)} 초</p>
-          <button onClick={handleRestart}>다시 시작</button>
-        </GameOverScreen>
-      )}
-    </GameContainer>
+        {fallingWords.map((word) => (
+            <WordContainer key={word.id} xPos={word.xPos} $animation={word.animation} $level={level}>
+              <WordBubble id={word.word}>
+                <FruitStem src="/src/assets/FruitStem.png" alt="Fruit Stem" />
+                {word.word}
+              </WordBubble>
+            </WordContainer>
+        ))}
+        <InputContainer>
+          <Input
+              ref={inputRef}
+              type="text"
+              value={input}
+              onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
+              disabled={gameOver}
+          />
+        </InputContainer>
+        {toast && <Toast>{toast}</Toast>}
+        {gameOver && (
+            <GameOverScreen>
+              <h1>Game Over</h1>
+              <p>점수: {score}</p>
+              <p>레벨: {level}</p>
+              <p>시간: {(time / 1000).toFixed(1)} 초</p>
+              <button onClick={handleRestart}>다시 시작</button>
+            </GameOverScreen>
+        )}
+      </GameContainer>
   );
 }
 
