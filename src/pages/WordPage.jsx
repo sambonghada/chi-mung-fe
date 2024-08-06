@@ -136,7 +136,7 @@ const WordBubble = styled.div`
 `;
 
 const FruitStem = styled.img.attrs({
-  src: fruitStemIMG,
+  src: FruitStemIMG,
   alt: 'Fruit Stem',
 })`
   position: absolute;
