@@ -1,0 +1,64 @@
+.container {
+    padding: 20px;
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    overflow: hidden;
+    background-image: url('../assets/paragraph_bg.png');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 180px 0 20px 0 ;
+    text-align: center;
+}
+
+.textContainer {
+    width: 40%;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    background-color: #FFFDEB;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.previousSentence, .nextSentence {
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.currentSentence {
+    color: black;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
+}
+
+.inputField {
+    width: 40%;
+    height: auto;
+    font-size: 16px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.wpm {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}

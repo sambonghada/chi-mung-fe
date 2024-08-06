@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Background from '../assets/paragraph_bg.png';
-// Lorem Ipsum 텍스트 생성 함수
+import styles from '../styles/ParagrpahPage.module.css';
+
 const generateLoremIpsum = () => {
     const text = "옛날에 선문대할망이라는 할머니가 있었다. 이 할머니는 한라산을 베개 삼고 누우면 다리는 제주시 앞 바다에 있는 관탈섬에 걸쳐졌다 한다. 이 할머니는 빨래를 하려면 빨래를 관탈섬에 놓아 발로 밟고, 손은 한라산 꼭대기를 짚고 서서 발로 문질러 빨았다 한다. 또 다른 이야기에는 한라산을 엉덩이로 깔아 앉아 한 쪽 다리는 관탈섬에 디디고, 한쪽 다리는 서귀포시 앞바다의 지귀섬에 디디고 해서 구좌읍 소섬을 빨래돌로 삼아 빨래를 했다 한다. 어떻든 이 이야기들로 이 여신이 얼마나 거대했었는가를 능히 알 수 있다."
-    return splitTextIntoChunks(text,25)
+    return splitTextIntoChunks(text,40);
 };
+
 const splitTextIntoChunks = (text, chunkSize) => {
     const chunks = [];
     let index = 0;
@@ -75,7 +76,6 @@ const ParagraphPage = () => {
 
     const handleKeyUp = (e) => {
         if (e.key === 'Enter') {
-            // e.preventDefault(); // 줄바꿈 방지
             if (inputText === sentences[currentSentenceIndex]) {
                 setInputText('');
                 setCurrentSentenceIndex((prevIndex) => prevIndex + 1);
@@ -88,10 +88,9 @@ const ParagraphPage = () => {
 
     const renderSentenceWithHighlights = () => {
         const currentSentence = sentences[currentSentenceIndex];
-        const inputLength = inputText.length;
-        if (currentSentence === undefined || currentSentence === null) {
-            return;
-        }
+        const inputLength    = inputText.length;
+        if (!currentSentence) return null;
+
         return (
             <>
                 {currentSentence.split('').map((char, index) => {
@@ -102,9 +101,12 @@ const ParagraphPage = () => {
                         <span
                             key={index}
                             style={{
-                                color: !isCorrect && !isExtra ? 'red' : 'white',
-                                boxShadow: !isExtra && isCorrect ? 'inset 0 -10px 0 green' : 'none'
+                                // color: !isCorrect && !isExtra ? 'red' : 'white',
+                                // boxShadow: !isExtra && isCorrect ? 'inset 0 -10px 0 green' : 'none',
                             }}
+                            className ={
+                                isExtra ? "" : isCorrect? styles.correct : styles.incorrect
+                            }
                         >
                             {char}
                         </span>
@@ -115,27 +117,27 @@ const ParagraphPage = () => {
     };
 
     return (
-        <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto', backgroundImage: `url(${Background})` }}>
-            <h1>Typing Practice Game</h1>
-            <div style={{ fontSize: '18px', lineHeight: '1.5', marginBottom: '20px' }}>
-                <p style={{ color: '#aaa', marginBottom: '10px' }}>
+        <div className={styles.container}>
+            <h1 className={styles.title}>설화 제목</h1>
+            <div className={styles.textContainer}>
+                <p className={styles.previousSentence}>
                     {currentSentenceIndex > 0 ? sentences[currentSentenceIndex - 1] : ''}
                 </p>
-                <p style={{ fontWeight: 'normal', marginBottom: '10px' }}>
+                <p className={styles.currentSentence}>
                     {renderSentenceWithHighlights()}
                 </p>
-                <p style={{ color: '#aaa' }}>
+                <p className={styles.nextSentence}>
                     {currentSentenceIndex < sentences.length - 1 ? sentences[currentSentenceIndex + 1] : ''}
                 </p>
             </div>
             <input
+                className={styles.inputField}
                 value={inputText}
                 onChange={handleChange}
                 onKeyUp={handleKeyUp}
-                placeholder="Start typing here..."
-                style={{ width: '100%', height: '100px', fontSize: '16px', padding: '10px' }}
+                placeholder="따라쳐보세요...!"
             />
-            <p>Words Per Minute (WPM): {wpm}</p>
+            <p className={styles.wpm}>Words Per Minute (WPM): {wpm}</p>
         </div>
     );
 };
