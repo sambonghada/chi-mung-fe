@@ -2861,7 +2861,7 @@ vary@~1.1.2:
 
 vite@^5.3.5:
   version "5.3.5"
-  resolved "https://registry.npmjs.org/vite/-/vite-5.3.5.tgz"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.3.5.tgz#b847f846fb2b6cb6f6f4ed50a830186138cb83d8"
   integrity sha512-MdjglKR6AQXQb9JGiS7Rc2wC6uMjcm7Go/NHNO63EwiJXfuk9PgqiP/n5IDJCziMkfw9n4Ubp7lttNwz+8ZVKA==
   dependencies:
     esbuild "^0.21.3"
