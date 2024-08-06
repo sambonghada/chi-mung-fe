@@ -253,7 +253,6 @@ const GameOverScreen = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-contents: space-around;
   gap: 10px;
 `;
 
@@ -394,7 +393,7 @@ function WordPage() {
         {fallingWords.map((word) => (
             <WordContainer key={word.id} xPos={word.xPos} $animation={word.animation} $level={level}>
               <WordBubble id={word.word}>
-                <FruitStem src="/src/assets/FruitStem.png" alt="Fruit Stem" />
+                <FruitStem/>
                 {word.word}
               </WordBubble>
             </WordContainer>
