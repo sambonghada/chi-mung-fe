@@ -1,10 +1,10 @@
-// import React from 'react';
+import React from 'react';
 import styles from '../styles/whiteRankingItem.module.css';
 
-const RankingItem = () => {
+const RankingItem = ({ backgroundColor }) => {
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} style={{ backgroundColor }}>
             <div className={styles.ranking}>
                 1
             </div>

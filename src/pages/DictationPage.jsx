@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import '../styles/DictationPage.module.css';
-import '../styles/DictationItem.module.css';
+import styles from '../styles/DictationPage.module.css';
 import background from '../assets/dictationBg.png';
+import note from '../assets/dictationNote.png';
 import { Howl } from 'howler';
+import MidBtn from '../assets/midBtn.png';
+import { HiSpeakerWave } from "react-icons/hi2";
 
 const questions = [
     { audioSrc: '/src/assets/sound/흥창망창.mp3', description: '문제 1 설명', correctAnswer: '안녕하수깡 - 안녕하세요' },
@@ -12,37 +13,6 @@ const questions = [
     { audioSrc: '/src/assets/sound/흥창망창.mp3', description: '문제 4 설명', correctAnswer: '안녕하수깡 - 안녕하세요' },
     { audioSrc: '/src/assets/sound/흥창망창.mp3', description: '문제 5 설명', correctAnswer: '안녕하수깡 - 안녕하세요' },
 ];
-
-const StyledDictationItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background: #f9f9f9;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-`;
-
-const StyledQuestion = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const StyledButton = styled.button`
-  background: ${props => (props.$play ? '#007bff' : '#28a745')};
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 3px;
-  cursor: pointer;
-`;
-
-const StyledInput = styled.input`
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-`;
 
 const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswers }) => {
     const [answer, setAnswer] = useState('');
@@ -60,19 +30,22 @@ const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswer
     };
 
     return (
-        <StyledDictationItem>
-            <StyledQuestion>
+        <div className={styles.dictationItem}>
+            <div className={styles.itemTopContainer}>
+            <div className={styles.question}>
                 <span>{index + 1}번 문제: {description}</span>
-                <StyledButton $play onClick={playAudio}>재생</StyledButton>
-            </StyledQuestion>
-            <StyledInput 
-                type="text" 
-                value={answer} 
-                onChange={handleInputChange} 
+                <button className={styles.playButton} onClick={playAudio}><HiSpeakerWave /></button>
+            </div>
+            <input
+                type="text"
+                value={answer}
+                onChange={handleInputChange}
                 placeholder="답을 입력하세요"
+                className={styles.input}
             />
+            </div>
             {showAnswers && <div className="result">정답: {correctAnswer}</div>}
-        </StyledDictationItem>
+        </div>
     );
 };
 
@@ -84,13 +57,13 @@ const DictationPage = () => {
     };
 
     return (
-        <div className="container" style={{ backgroundImage: `url(${background})` }}>
-            <div className="note">
-                <div className="itemContainer">
+        <div className={styles.container} style={{ backgroundImage: `url(${background})` }}>
+            <div className={styles.note} style={{ backgroundImage: `url(${note})`}}>
+                <div className={styles.itemContainer}>
                     {questions.map((question, index) => (
-                        <DictationItem 
-                            key={index} 
-                            audioSrc={question.audioSrc} 
+                        <DictationItem
+                            key={index}
+                            audioSrc={question.audioSrc}
                             description={question.description}
                             correctAnswer={question.correctAnswer}
                             index={index}
@@ -98,7 +71,7 @@ const DictationPage = () => {
                         />
                     ))}
                 </div>
-                <StyledButton onClick={handleShowAnswers}>모든 정답 보기</StyledButton>
+                <button className={styles.longBtn} style={{backgroundImage: `url(${MidBtn})`}} onClick={handleShowAnswers}><span>정답 확인</span></button>
             </div>
         </div>
     );

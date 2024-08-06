@@ -27,7 +27,6 @@ const RankingPage = () => {
             </div>
             <div className={styles.innerContainer}>
 
-
                 <div className={styles.innerTopContainer}>
                     <div className={styles.boxGroup}>
                         <div className={styles.smallBox}>
