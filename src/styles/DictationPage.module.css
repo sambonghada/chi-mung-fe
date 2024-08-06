@@ -70,7 +70,12 @@
     border: 1px solid #ddd;
     border-radius: 5px;
 
+}
 
+.answer {
+    width: 60px;
+    position: absolute;
+    top: 5px;
 }
 
 .itemTopContainer {
@@ -112,6 +117,11 @@
     bottom: 80px;
     display: flex;
     flex-direction: row;
+}
+
+.btnConrainer button:hover {
+    filter: brightness(0.8);
+
 }
 
 .result {

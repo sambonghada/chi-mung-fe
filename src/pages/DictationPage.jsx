@@ -1,65 +1,23 @@
+// DictationPage.js
 import React, { useMemo, useState } from 'react';
 import styles from '../styles/DictationPage.module.css';
 import background from '../assets/dictationBg.png';
 import note from '../assets/dictationNote.png';
-import { Howl } from 'howler';
 import MidBtn from '../assets/midBtn.png';
-import { HiSpeakerWave } from "react-icons/hi2";
 import { FaQuestionCircle } from "react-icons/fa";
 import { Tooltip } from 'antd';
 import mockData from '../mockData.js';
+import DictationItem from '../components/DictationItem.jsx';
 
 // mockData를 questions 형식으로 변환
+const tooltipText = <p>시간제한이 없으니 잘 듣고 띄어쓰기에 유의하여 정답을 입력해 제출해 보세요.
+    듣기 버튼을 클릭하면 언제든지 다시 들을 수 있습니다.</p>;
+
 const questions = mockData.map((item, index) => ({
     audioSrc: item.soundurl,
     description: item.meaning,
     correctAnswer: item.word
 }));
-
-const tooltipText = <p>시간제한이 없으니 잘 듣고 띄어쓰기에 유의하여 정답을 입력해 제출해 보세요.
-    듣기 버튼을 클릭하면 언제든지 다시 들을 수 있습니다.</p>;
-
-const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswers, resetFlag }) => {
-    const [answer, setAnswer] = useState('');
-
-    const handleInputChange = (e) => {
-        setAnswer(e.target.value);
-    };
-
-    const playAudio = () => {
-        const sound = new Howl({
-            src: [audioSrc],
-            format: ['mp3']
-        });
-        sound.play();
-    };
-
-    // Reset the answer when resetFlag changes
-    React.useEffect(() => {
-        setAnswer('');
-    }, [resetFlag]);
-
-    return (
-        <div className={styles.dictationItem}>
-            <div className={styles.itemTopContainer}>
-                <div className={styles.question}>
-                    <span>{index + 1}번 문제: {description}</span>
-                </div>
-                <div className={styles.soundInput}>
-                    <button className={styles.playButton} onClick={playAudio}><HiSpeakerWave /></button>
-                    <input
-                        type="text"
-                        value={answer}
-                        onChange={handleInputChange}
-                        placeholder="답을 입력하세요"
-                        className={styles.input}
-                    />
-                </div>
-            </div>
-            {showAnswers && <div className={styles.result}>정답: {correctAnswer}</div>}
-        </div>
-    );
-};
 
 const DictationPage = () => {
     const [showAnswers, setShowAnswers] = useState(false);
@@ -97,15 +55,25 @@ const DictationPage = () => {
                             correctAnswer={question.correctAnswer}
                             index={index}
                             showAnswers={showAnswers}
-                            resetFlag={resetFlag}  // Pass the resetFlag to each DictationItem
+                            resetFlag={resetFlag} // Pass the resetFlag to each DictationItem
                         />
                     ))}
                 </div>
                 <div className={styles.btnConrainer}>
-                    <button className={styles.longBtn} style={{ backgroundImage: `url(${MidBtn})` }}
-                            onClick={handleShowAnswers}><span>정답 확인</span></button>
-                    <button className={styles.longBtn} style={{ backgroundImage: `url(${MidBtn})` }}
-                            onClick={reload}><span>다시 풀기</span></button>
+                    <button
+                        className={styles.longBtn}
+                        style={{ backgroundImage: `url(${MidBtn})` }}
+                        onClick={handleShowAnswers}
+                    >
+                        <span>정답 확인</span>
+                    </button>
+                    <button
+                        className={styles.longBtn}
+                        style={{ backgroundImage: `url(${MidBtn})` }}
+                        onClick={reload}
+                    >
+                        <span>다시 풀기</span>
+                    </button>
                 </div>
             </div>
         </div>
