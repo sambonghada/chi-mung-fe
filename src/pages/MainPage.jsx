@@ -1,69 +1,47 @@
-import React from 'react';
-import { FaCrown } from "react-icons/fa";
-import LongBtn from "../assets/Longbtn.png"
-import background from "../assets/chi-mung-bg.png";
+// import React from 'react';
+import { FaCrown } from 'react-icons/fa';
+import LongBtn from '../assets/Longbtn.png';
+import background from '../assets/chi-mung-bg.png';
+import styles from '../styles/MainPage.module.css';
+import { useNavigate } from 'react-router-dom';
 
-// You can replace 'PageComponent' with the name of your component
 const MainPage = () => {
+    const navigate = useNavigate(); // Corrected typo: `cosnt` to `const`
+
+    const rankingNavigate = () => {
+        navigate('/ranking');
+    };
+
+    const handleNavigation = (path) => {
+        navigate(path);
+    };
+
     return (
-        <div style={styles.container}>
-            <div style={styles.buttons}>
-                <div style={styles.LongBtn}><p style={styles.LongBtn_text}>단어 연습</p></div>
-                <div style={styles.LongBtn}><p style={styles.LongBtn_text}>장문 연습</p></div>
-                <div style={styles.LongBtn}><p style={styles.LongBtn_text}>받아 쓰기</p></div>
-                <div style={styles.white_box}>
-                    <FaCrown/>
-                </div>
+        <div className={styles.container} style={{ backgroundImage: `url(${background})` }}>
+            <div className={styles.buttons}>
+                {['단어 연습', '장문 연습', '받아 쓰기'].map((text, index) => {
+                    let path = '';
+                    if (text === '단어 연습') path = '/word';
+                    if (text === '장문 연습') path = '/paragraph';
+                    if (text === '받아 쓰기') path = '/dictation';
+
+                    return (
+                        <button
+                            key={index}
+                            className={styles.LongBtn}
+                            style={{ backgroundImage: `url(${LongBtn})` }}
+                            onClick={() => handleNavigation(path)}
+                        >
+                            <p className={styles.LongBtn_text}>{text}</p>
+                        </button>
+                    );
+                })}
+                <button className={styles.white_box} onClick={rankingNavigate}>
+                    <FaCrown />
+                </button>
             </div>
         </div>
     );
 };
-const styles = {
-    container: {
-        backgroundImage: `url(${background})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        width: '100vw',
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    buttons:{
-        width: '100%',
-        height: '60vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: "30px"
-    },
-    LongBtn: {
-        backgroundImage: `url(${LongBtn})`,
-        backgroundSize: 'contain',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        width: '699px',
-        height: '192px',
-        cursor: 'pointer',
-    },
-    LongBtn_text: {
-        fontSize: '60px',
-        fontWeight: '900',
-        color: 'black',
-        margin: '30px 0px 50px 0px'
-    },
-    white_box:{
-        border: '3px solid black',
-        borderRadius: '30px',
-        marginTop: '20px',
-        padding: '20px 30px',
-        fontSize: '100px',
-        color: 'black',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'white',
-    }
-};
+
 export default MainPage;
