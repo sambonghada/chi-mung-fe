@@ -23,7 +23,7 @@ const MainPage = () => {
                 {['단어 연습', '장문 연습', '받아 쓰기'].map((text, index) => {
                     let path = '';
                     if (text === '단어 연습') path = '/word';
-                    if (text === '장문 연습') path = '/paragraph';
+                    if (text === '장문 연습') path = '/paragraphList';
                     if (text === '받아 쓰기') path = '/dictation';
 
                     return (
