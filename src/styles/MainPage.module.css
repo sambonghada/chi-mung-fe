@@ -21,43 +21,82 @@
 
 .buttons {
     width: 90%;
-    height: 60vh;
+    height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    /*gap: 30px;*/
 }
 
 
 
 .LongBtn {
-    background-size: contain;
+    background-size: contain  ;
     background-repeat: no-repeat;
     background-position: center;
-    width: 650px;
-    height: 152px;
+    width: 600px;
+    height: 600px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    /*transition: background-color 0.3s;*/
+    transition: background-image 0.1s ease-in-out;
+    background-image: url('../assets/Longbtn.png');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*padding: 30px;*/
+    justify-content: center;
+    /*background-color: red;*/
+    margin-bottom: 20px;
 }
 
 .LongBtn:hover {
-    filter: brightness(0.8);
+    /*background-color: red;*/
+    background-image: url('../assets/Longbtn_clicked.png');
 }
 
+
+
+/*.buttons .LongBtn:hover .LongBtn_text {*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+/*.LongBtn:hover {*/
+/*    filter: brightness(0.8);*/
+/*}*/
+
 .LongBtn_text {
+    height: 120%;
+    width: 100%;
     font-size: 50px;
     font-weight: 900;
     color: black;
     /*margin: 0px 0px 40px 0px;*/
-    padding: 15px 30px;
+    /*padding: 15px 30px;*/
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-family: 'EF_jejudoldam', sans-serif;
+    /*background-color: red;*/
 }
+
+.LongBtn_text:hover {
+    margin-bottom: 7px;
+}
+
+/*.LongBtn_text:hover {*/
+/*    !*margin-top: 10px;*!*/
+/*    !*margin-bottom: 20px;*!*/
+/*    !*padding: 35px 40px;*!*/
+/*    !*display: flex;*!*/
+/*    !*flex-direction: column;*!*/
+/*    !*align-items: center;*!*/
+/*    !*justify-content: center;*!*/
+/*    !*margin-bottom: 20px;*!*/
+/*    margin-bottom: 10px;*/
+/*}*/
 
 .white_box {
     border: 3px solid black;

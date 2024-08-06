@@ -5,6 +5,7 @@ import avatar from '../assets/avatar.png'
 import gold from '../assets/goldMedal.png'
 import silver from '../assets/silverMedal.png'
 import bronze from '../assets/bronzeMedal.png'
+import MidBtn from '../assets/midBtn.png'
 import RankingItem from "../components/RankingItem.jsx";
 
 // You can replace 'PageComponent' with the name of your component
@@ -12,7 +13,20 @@ const RankingPage = () => {
     return (
         <div className={styles.container} style={{backgroundImage: `url(${background})`}}>
             <div className={styles.title}>요망진 아이들</div>
+            <div className={styles.btnContainer}>
+                <button
+                    className={styles.midBtn}
+                    style={{backgroundImage: `url(${MidBtn})`}}
+                >단어 순위
+                </button>
+                <button
+                    className={styles.midBtn}
+                    style={{backgroundImage: `url(${MidBtn})`}}
+                >장문 순위
+                </button>
+            </div>
             <div className={styles.innerContainer}>
+
 
                 <div className={styles.innerTopContainer}>
                     <div className={styles.boxGroup}>

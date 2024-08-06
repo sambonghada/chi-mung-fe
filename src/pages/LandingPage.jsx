@@ -39,6 +39,9 @@ const LandingPage = () => {
                     </div>
                 ))}
             </div>
+            <div className={styles.subTitleContainer}>
+                <p className={styles.subTitle}>타자 치면서 배우는 제주어</p>
+            </div>
             <button
                 className={`${styles.btn} ${styles.effect5}`}
                 onClick={mainNavigate}

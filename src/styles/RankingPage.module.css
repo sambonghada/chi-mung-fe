@@ -15,7 +15,7 @@
     background-size: cover;
     background-position: top;
     overflow: hidden;
-    padding-top: 60px;
+    padding-top: 30px;
     flex-direction: column;
 }
 
@@ -28,8 +28,33 @@
     align-items: center;
     overflow-y: auto;
     margin-bottom: 50px;
+
 }
 
+.btnContainer {
+    width: 350px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.btnContainer button:hover {
+    filter: brightness(0.8);
+}
+
+.midBtn {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 400px;
+    height: 60px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+    font-size: 16px;
+}
 
 
 
@@ -39,7 +64,7 @@
     color: #FFFDEB;
     -webkit-text-stroke: 2px #000;
     text-shadow: 4px 4px 0px #000;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 
 .innerTopContainer {
@@ -47,7 +72,7 @@
     /*background-color: red;*/
     display: flex;
     justify-content: center;
-    margin-top: 160px;
+    margin-top: 170px;
     gap: 40px;
     align-items: center;
 }

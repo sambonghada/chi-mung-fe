@@ -18,4 +18,14 @@
     background-size: cover  ; /* Optional: adjust to ensure the image covers the entire background */
     background-repeat: no-repeat; /* Optional: prevent the image from repeating */
     background-position: center; /* Optional: center the image */
+
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+}
+
+.itemContainer {
+    margin-top: 100px;
+    margin-left: 40px;
+    width: 80%;
 }

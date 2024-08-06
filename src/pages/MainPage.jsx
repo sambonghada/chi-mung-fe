@@ -1,12 +1,13 @@
-// import React from 'react';
+import React from 'react';
 import { FaCrown } from 'react-icons/fa';
-import LongBtn from '../assets/Longbtn.png';
+// import LongBtn from '../assets/Longbtn.png';
+// import LongBtnClicked from '../assets/Longbtn_clicked.png';
 import background from '../assets/mainBg.png';
 import styles from '../styles/MainPage.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const MainPage = () => {
-    const navigate = useNavigate(); // Corrected typo: `cosnt` to `const`
+    const navigate = useNavigate();
 
     const rankingNavigate = () => {
         navigate('/ranking');
@@ -29,7 +30,7 @@ const MainPage = () => {
                         <button
                             key={index}
                             className={styles.LongBtn}
-                            style={{ backgroundImage: `url(${LongBtn})` }}
+                            // style={{ backgroundImage: `url(${LongBtn})` }}
                             onClick={() => handleNavigation(path)}
                         >
                             <p className={styles.LongBtn_text}>{text}</p>
