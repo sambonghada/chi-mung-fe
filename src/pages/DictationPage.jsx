@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import '../styles/DictationPage.module.css';
 import '../styles/DictationItem.module.css';
@@ -7,11 +6,11 @@ import background from '../assets/dictationBg.png';
 import { Howl } from 'howler';
 
 const questions = [
-    { dialectId: 7569, correctAnswer: '안녕하수깡 - 안녕하세요' },
-    { dialectId: 7569, correctAnswer: '안녕하수깡 - 안녕하세요' },
-    { dialectId: 7569, correctAnswer: '안녕하수깡 - 안녕하세요' },
-    { dialectId: 7569, correctAnswer: '안녕하수깡 - 안녕하세요' },
-    { dialectId: 7569, correctAnswer: '안녕하수깡 - 안녕하세요' },
+    { audioSrc: '/src/assets/sound/흥창망창.mp3', correctAnswer: '안녕하수깡 - 안녕하세요' },
+    { audioSrc: '/src/assets/sound/흥창망창.mp3', correctAnswer: '안녕하수깡 - 안녕하세요' },
+    { audioSrc: '/src/assets/sound/흥창망창.mp3', correctAnswer: '안녕하수깡 - 안녕하세요' },
+    { audioSrc: '/src/assets/sound/흥창망창.mp3', correctAnswer: '안녕하수깡 - 안녕하세요' },
+    { audioSrc: '/src/assets/sound/흥창망창.mp3', correctAnswer: '안녕하수깡 - 안녕하세요' },
 ];
 
 const StyledDictationItem = styled.div`
@@ -45,27 +44,9 @@ const StyledInput = styled.input`
   border-radius: 3px;
 `;
 
-const DictationItem = ({ dialectId, correctAnswer, index }) => {
+const DictationItem = ({ audioSrc, correctAnswer, index }) => {
     const [answer, setAnswer] = useState('');
     const [result, setResult] = useState('');
-    const [audioSrc, setAudioSrc] = useState('');
-
-    useEffect(() => {
-        const fetchAudio = async () => {
-            try {
-                const response = await axios.get(`https://www.jeju.go.kr/api/culture/dialect?dialect=${dialectId}`, {
-                    responseType: 'arraybuffer',
-                });
-                const audioBlob = new Blob([response.data], { type: 'audio/mp3' });
-                const audioUrl = URL.createObjectURL(audioBlob);
-                setAudioSrc(audioUrl);
-            } catch (error) {
-                console.error('Error fetching audio:', error);
-            }
-        };
-
-        fetchAudio();
-    }, [dialectId]);
 
     const handleInputChange = (e) => {
         setAnswer(e.target.value);
@@ -78,7 +59,7 @@ const DictationItem = ({ dialectId, correctAnswer, index }) => {
     const playAudio = () => {
         const sound = new Howl({
             src: [audioSrc],
-            format: ['mp3']  // format 옵션 추가
+            format: ['mp3']
         });
         sound.play();
     };
@@ -109,7 +90,7 @@ const DictationPage = () => {
                     {questions.map((question, index) => (
                         <DictationItem 
                             key={index} 
-                            dialectId={question.dialectId} 
+                            audioSrc={question.audioSrc} 
                             correctAnswer={question.correctAnswer}
                             index={index}
                         />
