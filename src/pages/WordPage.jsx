@@ -3,8 +3,7 @@ import styled, { keyframes, css } from "styled-components";
 import backgroundIMG from "../assets/background.png";
 import heartIMG from "../assets/heart.png";
 import FruitStemIMG from "../assets/FruitStem.png";
-import {useNavigate} from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 const baseWords = [
   { word: "세히", meaning: "꼼꼼히" },
@@ -29,12 +28,12 @@ const baseWords = [
 ];
 
 const generateInitialWords = (level) =>
-    baseWords.map((word, index) => ({
-      ...word,
-      xPos: Math.random() * 80 + 10,
-      id: index + 1,
-      animation: getAnimationType(level),
-    }));
+  baseWords.map((word, index) => ({
+    ...word,
+    xPos: Math.random() * 80 + 10,
+    id: index + 1,
+    animation: getAnimationType(level),
+  }));
 
 const moveDown = keyframes`
   0% { top: -10%; }
@@ -67,19 +66,27 @@ const getAnimationType = (level) => {
     case 3:
       return "moveSideToSide";
     case 4:
-      return "moveSideToSide";
+      return "moveDown";
     case 5:
-      return "vibrate";
-    case 6:
       return "moveUp";
+    case 6:
+      return "moveDown";
+    case 7:
+      return "moveSideToSide";
+    case 8:
+      return "moveSideToSide";
+    case 9:
+      return "moveUp";
+    case 10:
+      return "moveDown";
     default:
       return "moveDown";
   }
 };
 
 const getAnimation = (animationType, level) => {
-  const baseSpeed = 6; // 기본 속도 조정
-  const speed = Math.max(baseSpeed - level, 2); // 속도를 레벨에 따라 조정
+  const baseSpeed = 6;
+  const speed = Math.max(baseSpeed - level, 2);
 
   switch (animationType) {
     case "moveUp":
@@ -92,11 +99,11 @@ const getAnimation = (animationType, level) => {
       `;
     case "moveSideToSide":
       return css`
-        ${moveDown} ${speed}s linear forwards, ${moveSideToSide} 3s infinite
+        ${moveDown} ${speed}s linear forwards, ${moveSideToSide} 0.7s infinite
       `;
     case "vibrate":
       return css`
-        ${moveDown} ${speed}s linear forwards, ${vibrate} 2s infinite
+        ${moveDown} ${speed}s linear forwards, ${vibrate} 1s infinite
       `;
     default:
       return css`
@@ -120,14 +127,14 @@ const GameContainer = styled.div`
 
 const WordContainer = styled.div`
   position: absolute;
-  top: ${props => (props.$animation === "moveUp" ? "100%" : "-10%")};
-  left: ${props => props.xPos}%;
+  top: ${(props) => (props.$animation === "moveUp" ? "100%" : "-10%")};
+  left: ${(props) => props.xPos}%;
   transform: translateX(-50%);
-  animation: ${props => getAnimation(props.$animation, props.$level)};
+  animation: ${(props) => getAnimation(props.$animation, props.$level)};
 `;
 
 const WordBubble = styled.div`
-  position: relative; /* 이미지 위치를 조정하기 위해 relative로 설정 */
+  position: relative;
   background: rgb(255, 165, 0);
   padding: 10px 20px;
   border-radius: 20px;
@@ -137,31 +144,30 @@ const WordBubble = styled.div`
 
 const FruitStem = styled.img.attrs({
   src: FruitStemIMG,
-  alt: 'Fruit Stem',
+  alt: "Fruit Stem",
 })`
   position: absolute;
-  top: -15px; /* 단어 위에 이미지를 배치 */
+  top: -15px;
   left: 55%;
   transform: translateX(-60%);
-  width: 30px; /* 이미지 크기 조정 */
+  width: 30px;
   height: auto;
 `;
 
 const TopContainer = styled.div`
-
   position: absolute;
   display: flex;
   top: 20px;
   padding-left: 100px;
   width: 100%;
-  z-index: 1000; /* 가장 상단에 배치 */
+  z-index: 1000;
 `;
 
 const InfoContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  margin-top: 10px; /* top에서 약간의 여백 추가 */
+  margin-top: 10px;
 `;
 
 const Level = styled.div`
@@ -217,7 +223,7 @@ const Toast = styled.div`
 
 const HealthBarContainer = styled.div`
   width: 80%;
-  margin: 10px auto; /* 중앙 정렬 */
+  margin: 10px auto;
   height: 30px;
   background: #f2f2f2;
   border: 2px solid #000;
@@ -228,7 +234,7 @@ const HealthBarDiv = styled.div`
   height: 100%;
   transition: width 0.5s;
   border-radius: 8px;
-  background: ${props => (props.health > 30 ? "#76c7c0" : "#f46652")};
+  background: ${(props) => (props.health > 30 ? "#76c7c0" : "#f46652")};
 `;
 
 const HeartIcon = styled.div`
@@ -241,6 +247,7 @@ const HeartIcon = styled.div`
   background-size: cover;
   margin-right: 20px;
 `;
+
 const GameOverScreen = styled.div`
   position: absolute;
   top: 50%;
@@ -258,9 +265,9 @@ const GameOverScreen = styled.div`
 
 function HealthBar({ health }) {
   return (
-      <HealthBarContainer>
-        <HealthBarDiv style={{ width: `${health}%` }} health={health} />
-      </HealthBarContainer>
+    <HealthBarContainer>
+      <HealthBarDiv style={{ width: `${health}%` }} health={health} />
+    </HealthBarContainer>
   );
 }
 
@@ -280,14 +287,16 @@ function WordPage() {
   const navigate = useNavigate();
 
   const navigateOver = () => {
-    navigate('/word/over');
-  }
+    navigate("/word/over");
+  };
 
-  const handleInputChange = e => setInput(e.target.value);
+  const handleInputChange = (e) => setInput(e.target.value);
 
-  const handleKeyDown = e => {
+  const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      const wordIndex = fallingWords.findIndex(w => w.word === input.toLowerCase());
+      const wordIndex = fallingWords.findIndex(
+        (w) => w.word === input.toLowerCase()
+      );
       if (wordIndex !== -1) {
         const newFallingWords = [...fallingWords];
         const removedWord = newFallingWords.splice(wordIndex, 1)[0];
@@ -305,7 +314,6 @@ function WordPage() {
       navigateOver();
       setGameOver(true);
       clearInterval(timerRef.current);
-      // navigate("/over");
     }
   }, [health, level]);
 
@@ -316,11 +324,13 @@ function WordPage() {
   useEffect(() => {
     const addWord = () => {
       if (!gameOver && words.length > 0) {
-        const newWords = words.splice(0, level === 7 ? 3 : 1).map(word => ({ ...word, id: nextId.current++ }));
-        setFallingWords(prev => [...prev, ...newWords]);
+        const newWords = words
+          .splice(0, level === 7 ? 3 : 1)
+          .map((word) => ({ ...word, id: nextId.current++ }));
+        setFallingWords((prev) => [...prev, ...newWords]);
         setWords(words);
       } else if (!gameOver && words.length === 0) {
-        setLevel(prevLevel => {
+        setLevel((prevLevel) => {
           const newLevel = prevLevel + 1;
           if (newLevel <= 10) {
             setWords(generateInitialWords(newLevel));
@@ -330,26 +340,31 @@ function WordPage() {
       }
     };
 
-    const intervalId = setInterval(addWord, 1800 - (Math.min(level, 5) * 100)); // 새 단어가 추가되는 간격을 약간 늘림
+    const intervalId = setInterval(
+      addWord,
+      1800 - Math.min(level, 5) * 100
+    );
     return () => clearInterval(intervalId);
   }, [words, gameOver, level]);
 
   useEffect(() => {
     const checkFallingWords = () => {
-      setFallingWords(prev => prev.filter(word => {
-        const wordElement = document.getElementById(word.word);
-        if (wordElement) {
-          const rect = wordElement.getBoundingClientRect();
-          if (rect.top < 0 && word.animation === "moveUp") {
-            setHealth(prevHealth => prevHealth - 5); // 상단에 닿을 때 점수가 깎임
-            return false;
-          } else if (rect.top > window.innerHeight) {
-            setHealth(prevHealth => prevHealth - 5); // 하단에 닿을 때 점수가 깎임
-            return false;
+      setFallingWords((prev) =>
+        prev.filter((word) => {
+          const wordElement = document.getElementById(word.word);
+          if (wordElement) {
+            const rect = wordElement.getBoundingClientRect();
+            if (rect.top < 0 && word.animation === "moveUp") {
+              setHealth((prevHealth) => prevHealth - 5);
+              return false;
+            } else if (rect.top > window.innerHeight) {
+              setHealth((prevHealth) => prevHealth - 5);
+              return false;
+            }
           }
-        }
-        return true;
-      }));
+          return true;
+        })
+      );
     };
 
     const intervalId = setInterval(checkFallingWords, 100);
@@ -358,7 +373,7 @@ function WordPage() {
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
-      setTime(prevTime => prevTime + 10);
+      setTime((prevTime) => prevTime + 10);
     }, 10);
     return () => clearInterval(timerRef.current);
   }, []);
@@ -370,55 +385,60 @@ function WordPage() {
     setHealth(100);
     setGameOver(false);
     setLevel(1);
-    setInput(""); // 텍스트 리셋
+    setInput("");
     setTime(0);
     timerRef.current = setInterval(() => {
-      setTime(prevTime => prevTime + 10);
+      setTime((prevTime) => prevTime + 10);
     }, 10);
   };
 
   return (
-      <GameContainer>
-        <TopContainer>
-          <HeartIcon />
-          <HealthBarContainer>
-            <HealthBarDiv health={health} style={{ width: `${health}%` }} />
-          </HealthBarContainer>
-          <InfoContainer>
-            <Level>Level: {level}</Level>
-            <Timer>Timer: {(time / 1000).toFixed(1)}s</Timer>
-            <Score>Score: {score}</Score>
-          </InfoContainer>
-        </TopContainer>
-        {fallingWords.map((word) => (
-            <WordContainer key={word.id} xPos={word.xPos} $animation={word.animation} $level={level}>
-              <WordBubble id={word.word}>
-                <FruitStem/>
-                {word.word}
-              </WordBubble>
-            </WordContainer>
-        ))}
-        <InputContainer>
-          <Input
-              ref={inputRef}
-              type="text"
-              value={input}
-              onChange={handleInputChange}
-              onKeyDown={handleKeyDown}
-              disabled={gameOver}
-          />
-        </InputContainer>
-        {toast && <Toast>{toast}</Toast>}
-        {gameOver && (
-            <GameOverScreen>
-              <h1>Game Over</h1>
-              <p>점수: {score}</p>
-              <p>레벨: {level}</p>
-              <p>시간: {(time / 1000).toFixed(1)} 초</p>
-              <button onClick={handleRestart}>다시 시작</button>
-            </GameOverScreen>
-        )}
-      </GameContainer>
+    <GameContainer>
+      <TopContainer>
+        <HeartIcon />
+        <HealthBarContainer>
+          <HealthBarDiv health={health} style={{ width: `${health}%` }} />
+        </HealthBarContainer>
+        <InfoContainer>
+          <Level>Level: {level}</Level>
+          <Timer>Timer: {(time / 1000).toFixed(1)}s</Timer>
+          <Score>Score: {score}</Score>
+        </InfoContainer>
+      </TopContainer>
+      {fallingWords.map((word) => (
+        <WordContainer
+          key={word.id}
+          xPos={word.xPos}
+          $animation={word.animation}
+          $level={level}
+        >
+          <WordBubble id={word.word}>
+            <FruitStem />
+            {word.word}
+          </WordBubble>
+        </WordContainer>
+      ))}
+      <InputContainer>
+        <Input
+          ref={inputRef}
+          type="text"
+          value={input}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          disabled={gameOver}
+        />
+      </InputContainer>
+      {toast && <Toast>{toast}</Toast>}
+      {gameOver && (
+        <GameOverScreen>
+          <h1>Game Over</h1>
+          <p>점수: {score}</p>
+          <p>레벨: {level}</p>
+          <p>시간: {(time / 1000).toFixed(1)} 초</p>
+          <button onClick={handleRestart}>다시 시작</button>
+        </GameOverScreen>
+      )}
+    </GameContainer>
   );
 }
 
