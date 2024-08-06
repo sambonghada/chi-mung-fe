@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled, { keyframes, css } from "styled-components";
-
+import backgroundIMG from "../assets/background.png";
+import heartIMG from "../assets/heart.png";
+import fruitStemIMG from "../assets/fruitStem.png";
 
 const baseWords = [
   { word: "세히", meaning: "꼼꼼히" },
@@ -104,7 +106,7 @@ const getAnimation = (animationType, level) => {
 const GameContainer = styled.div`
   width: 100%;
   height: 100vh;
-  background: url('/src/assets/background.png') no-repeat center center fixed;
+  background: url(${backgroundIMG}) no-repeat center center fixed;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -131,7 +133,10 @@ const WordBubble = styled.div`
   color: black;
 `;
 
-const FruitStem = styled.img`
+const FruitStem = styled.img.attrs({
+  src: fruitStemIMG,
+  alt: 'Fruit Stem',
+})`
   position: absolute;
   top: -15px; /* 단어 위에 이미지를 배치 */
   left: 55%;
@@ -228,7 +233,7 @@ const HeartIcon = styled.div`
   position: relative;
   height: 50px;
   width: 100px;
-  background-image: url('/src/assets/heart.png');
+  background-image: url(${heartIMG});
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
