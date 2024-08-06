@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import styled, { keyframes, css } from "styled-components";
 import backgroundIMG from "../assets/background.png";
 import heartIMG from "../assets/heart.png";
-import fruitStemIMG from "../assets/fruitStem.png";
+import FruitStemIMG from "../assets/FruitStem.png";
 import {useNavigate} from "react-router-dom";
 
 
