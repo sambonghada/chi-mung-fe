@@ -9,7 +9,8 @@ const WordOverPage = () => {
             <div className={styles.topContainer}>
                 <span>내 점수: 20</span>
                 <div className={styles.nickInput}>
-                    <input/>
+                    <input type="text" placeholder="닉네임을 입력해주세요."/>
+                    <button>랭킹 등록</button>
                 </div>
 
             </div>
