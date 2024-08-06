@@ -32,7 +32,6 @@ const WordOverPage = () => {
       category: "word",
     };
 
-    console.log(data);
     fetch("http://localhost:8080/api/scores", {
       method: "POST",
       headers: {
