@@ -9,7 +9,7 @@ export default defineConfig({
       '/api': {
         target: 'https://www.jeju.go.kr',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api')
+        rewrite: (path) =>path.replace(/^\/api/, '/api')
       }
     }
   }
