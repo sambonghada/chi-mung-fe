@@ -5,8 +5,9 @@ import { HiSpeakerWave } from "react-icons/hi2";
 import answerImg from '../assets/answer.png';
 import wrongImg from '../assets/wrong.png';
 import styles from '../styles/DictationPage.module.css';
+import mockSound from '../assets/sound/7192.mp3'
 
-const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswers, resetFlag }) => {
+const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswers, resetFlag, soundNumber }) => {
     const [answer, setAnswer] = useState('');
 
     // const isCorrect = answer === correctAnswer;
@@ -18,10 +19,21 @@ const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswer
         setAnswer(e.target.value);
         // console.log(answerTrimmed);
     };
-
+    // const playAudio = async () => {
+    //     try {
+    //         const soundModule = await import(`../assets/sound/${soundNumber}.mp3`);
+    //         const sound = new Howl({
+    //             src: [soundModule.default],
+    //             format: ['mp3']
+    //         });
+    //         sound.play();
+    //     } catch (error) {
+    //         console.error('Error loading sound:', error);
+    //     }
+    // };
     const playAudio = () => {
         const sound = new Howl({
-            src: [audioSrc],
+            src: [mockSound],
             format: ['mp3']
         });
         sound.play();
