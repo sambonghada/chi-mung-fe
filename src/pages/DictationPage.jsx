@@ -25,6 +25,7 @@ const DictationPage = () => {
 
     const handleShowAnswers = () => {
         setShowAnswers(true);
+
     };
 
     const reload = () => {

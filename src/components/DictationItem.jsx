@@ -9,8 +9,14 @@ import styles from '../styles/DictationPage.module.css';
 const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswers, resetFlag }) => {
     const [answer, setAnswer] = useState('');
 
+    // const isCorrect = answer === correctAnswer;
+    const answerTrimmed = answer.trim();
+    // const correctAnswerTrimmed = correctAnswer.trim();
+    const isCorrect = answerTrimmed === correctAnswer;
+
     const handleInputChange = (e) => {
         setAnswer(e.target.value);
+        // console.log(answerTrimmed);
     };
 
     const playAudio = () => {
@@ -26,20 +32,20 @@ const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswer
         setAnswer('');
     }, [resetFlag]);
 
-    const isCorrect = answer.trim() === correctAnswer;
+
 
     return (
         <div className={styles.dictationItem}>
             {showAnswers && (
                 <img
-                    src={isCorrect ? answerImg : wrongImg}
+                    src={isCorrect ? answerImg : wrongImg }
                     alt={isCorrect ? "answer" : "wrong"}
                     className={styles.answer}
                 />
             )}
             <div className={styles.itemTopContainer}>
                 <div className={styles.question}>
-                    <span>{index + 1}번: {description}</span>
+                    <span>{index + 1}번 표준어: {description}</span>
                 </div>
                 <div className={styles.soundInput}>
                     <button className={styles.playButton} onClick={playAudio}><HiSpeakerWave /></button>
