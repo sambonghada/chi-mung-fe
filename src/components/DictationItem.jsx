@@ -5,35 +5,20 @@ import { HiSpeakerWave } from "react-icons/hi2";
 import answerImg from '../assets/answer.png';
 import wrongImg from '../assets/wrong.png';
 import styles from '../styles/DictationPage.module.css';
-import mockSound from '../assets/sound/7192.mp3'
 
-const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswers, resetFlag, soundNumber }) => {
+const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswers, resetFlag }) => {
     const [answer, setAnswer] = useState('');
 
-    // const isCorrect = answer === correctAnswer;
     const answerTrimmed = answer.trim();
-    // const correctAnswerTrimmed = correctAnswer.trim();
     const isCorrect = answerTrimmed === correctAnswer;
 
     const handleInputChange = (e) => {
         setAnswer(e.target.value);
-        // console.log(answerTrimmed);
     };
-    // const playAudio = async () => {
-    //     try {
-    //         const soundModule = await import(`../assets/sound/${soundNumber}.mp3`);
-    //         const sound = new Howl({
-    //             src: [soundModule.default],
-    //             format: ['mp3']
-    //         });
-    //         sound.play();
-    //     } catch (error) {
-    //         console.error('Error loading sound:', error);
-    //     }
-    // };
+
     const playAudio = () => {
         const sound = new Howl({
-            src: [mockSound],
+            src: [audioSrc],
             format: ['mp3']
         });
         sound.play();
@@ -44,13 +29,11 @@ const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswer
         setAnswer('');
     }, [resetFlag]);
 
-
-
     return (
         <div className={styles.dictationItem}>
             {showAnswers && (
                 <img
-                    src={isCorrect ? answerImg : wrongImg }
+                    src={isCorrect ? answerImg : wrongImg}
                     alt={isCorrect ? "answer" : "wrong"}
                     className={styles.answer}
                 />
