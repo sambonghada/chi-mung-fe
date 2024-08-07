@@ -3,6 +3,90 @@ import styles from '../styles/ParagrpahPage.module.css';
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
+const items = [
+    {
+        title: '고성목과 산방덕',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202105/jv12290508.jpg',
+    },
+    {
+        title: '오서자',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202105/jv12290512.jpg',
+    },
+    {
+        title: '고종달의 단혈',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202106/jv12307043.jpg',
+    },
+    {
+        title: '장사 양태수',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202003/jv11987727.jpg',
+    },
+    {
+        title: '여우물',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202106/jv12307044.jpg',
+    },
+    {
+        title: '정방폭포와 서불과차',
+        image: 'https://imagescdn.gettyimagesbank.com/500/201912/jv11956832.jpg',
+    },
+    {
+        title: '양남택과 구렁팟 당신',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202005/jv12018235.jpg',
+    },
+    {
+        title: '용궁 아들 삼형제와 매오름',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202005/jv12018240.jpg',
+    },
+    {
+        title: '장사 구운문',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202105/jv12290511.jpg',
+    },
+    {
+        title: '군산',
+        image: 'https://imagescdn.gettyimagesbank.com/500/201909/jv11930939.jpg',
+    },
+    {
+        title: '의귀리 김댁 종 논하니',
+        image: 'https://imagescdn.gettyimagesbank.com/500/201911/jv11956188.jpg',
+    },
+    {
+        title: '오리수',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202302/jv12676766.jpg',
+    },
+    {
+        title: '신도 충견무덤',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202001/jv11979303.jpg',
+    },
+    {
+        title: '오 찰방 누님',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202105/jv12290513.jpg',
+    },
+    {
+        title: '이재수의 난',
+        image: 'https://imagescdn.gettyimagesbank.com/500/201911/jv11956189.jpg',
+    },
+    {
+        title: '오찬이 궤',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202103/jv12243880.jpg',
+    },
+    {
+        title: '상창 하르방당신',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202103/jv12243886.jpg',
+    },
+    {
+        title: '영실기암의 형성',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202103/jv12243877.jpg',
+    },
+    {
+        title: '신선 놀이터',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202103/jv12243885.jpg',
+    },
+    {
+        title: '선문대할망의 한라산 창조',
+        image: 'https://imagescdn.gettyimagesbank.com/500/202103/jv12243883.jpg',
+    },
+];
+
+
 const generateLoremIpsum = () => {
     const text = "옛날에 선문대할망이라는 할머니가 있었다. 이 할머니는 한라산을 베개 삼고 누우면 다리는 제주시 앞 바다에 있는 관탈섬에 걸쳐졌다 한다. 이 할머니는 빨래를 하려면 빨래를 관탈섬에 놓아 발로 밟고, 손은 한라산 꼭대기를 짚고 서서 발로 문질러 빨았다 한다. 또 다른 이야기에는 한라산을 엉덩이로 깔아 앉아 한 쪽 다리는 관탈섬에 디디고, 한쪽 다리는 서귀포시 앞바다의 지귀섬에 디디고 해서 구좌읍 소섬을 빨래돌로 삼아 빨래를 했다 한다. 어떻든 이 이야기들로 이 여신이 얼마나 거대했었는가를 능히 알 수 있다."
     return splitTextIntoChunks(text, 40);
@@ -166,7 +250,7 @@ const ParagraphPage = () => {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>설화 제목</h1>
+            <h1 className={styles.title}>{items[params].title}</h1>
             <div className={styles.metadata}>
                 <p className={styles.time}>남은 시간: {formatTime(timeLeft)}</p>
                 <p className={styles.score}>{score} 점</p>
