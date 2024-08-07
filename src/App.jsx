@@ -7,7 +7,7 @@ import ParagraphPage from "./pages/ParagraphPage.jsx";
 import DictationPage from "./pages/DictationPage.jsx";
 import RankingPage from "./pages/RankingPage.jsx";
 import WordOverPage from "./pages/WordOverPage.jsx";
-import ParagraphOverPage from "./pages/WordOverPage.jsx";
+import ParagraphOverPage from "./pages/ParagraphOverPage.jsx";
 import { GameProvider } from './components/GameContext.jsx';
 import ParagraphListPage from "./pages/ParagraphListPage.jsx";
 
