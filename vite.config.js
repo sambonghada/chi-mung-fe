@@ -10,7 +10,12 @@ export default defineConfig({
         target: 'https://www.jeju.go.kr',
         changeOrigin: true,
         rewrite: (path) =>path.replace(/^\/api/, '/api')
-      }
+      },
+      '/voices': {
+        target: 'https://judy-carter-hyden-silvia-snorlax.site',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/voices/, '/voices'),  // URL 변환 설정
+      },
     }
   }
 });

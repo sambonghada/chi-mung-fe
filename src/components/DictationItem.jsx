@@ -1,7 +1,7 @@
-// DictationItem.js
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Howl } from 'howler';
 import { HiSpeakerWave } from "react-icons/hi2";
+import PropTypes from 'prop-types';
 import answerImg from '../assets/answer.png';
 import wrongImg from '../assets/wrong.png';
 import styles from '../styles/DictationPage.module.css';
@@ -17,11 +17,19 @@ const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswer
     };
 
     const playAudio = () => {
-        const sound = new Howl({
-            src: [audioSrc],
-            format: ['mp3']
-        });
-        sound.play();
+        if (audioSrc) {
+            const sound = new Howl({
+                src: [audioSrc],
+                format: ['mp3'],
+                onloaderror: (id, error) => {
+                    console.error('Error loading audio:', error);
+                    alert('Audio 파일을 불러오는 중 오류가 발생했습니다.');
+                },
+            });
+            sound.play();
+        } else {
+            alert('오디오 파일이 없습니다.');
+        }
     };
 
     // Reset the answer when resetFlag changes
@@ -57,6 +65,16 @@ const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswer
             {showAnswers && <div className={styles.result}>정답: {correctAnswer}</div>}
         </div>
     );
+};
+
+// PropTypes를 사용하여 props의 타입을 검증
+DictationItem.propTypes = {
+    audioSrc: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    correctAnswer: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
+    showAnswers: PropTypes.bool.isRequired,
+    resetFlag: PropTypes.number.isRequired,
 };
 
 export default DictationItem;
