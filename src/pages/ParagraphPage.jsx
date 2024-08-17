@@ -271,7 +271,7 @@ const ParagraphPage = () => {
                 value={inputText}
                 onChange={handleChange}
                 onKeyUp={handleKeyUp}
-                placeholder="따라쳐보세요...!"
+                placeholder="주어진 설화를 따라서 타이핑해보세요."
                 disabled={isGameEnded}
             />
             {isGameEnded && (

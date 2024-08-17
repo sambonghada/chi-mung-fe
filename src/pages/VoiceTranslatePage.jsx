@@ -5,8 +5,9 @@ import girl from '../assets/girl.png';
 import dol from '../assets/dol.png';
 import { PiOrangeFill } from "react-icons/pi";
 import { FaMicrophoneAlt, FaSquare } from "react-icons/fa";
-import { ReactMic } from 'react-mic';
+// import { ReactMic } from 'react-mic';
 import { Tooltip } from 'antd';
+
 
 const VoiceTranslatePage = () => {
     const [isRecording, setIsRecording] = useState(false);

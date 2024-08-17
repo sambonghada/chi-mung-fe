@@ -509,9 +509,9 @@
   dependencies:
     "@babel/runtime" "^7.24.4"
 
-"@rc-component/color-picker@~2.0.1":
+"@rc-component/color-picker@^2.0.1", "@rc-component/color-picker@~2.0.1":
   version "2.0.1"
-  resolved "https://registry.npmjs.org/@rc-component/color-picker/-/color-picker-2.0.1.tgz"
+  resolved "https://registry.yarnpkg.com/@rc-component/color-picker/-/color-picker-2.0.1.tgz#6b9b96152466a9d4475cbe72b40b594bfda164be"
   integrity sha512-WcZYwAThV/b2GISQ8F+7650r5ZZJ043E57aVBFkQ+kSY4C6wdofXgB0hBx+GPGpIU0Z81eETNoDUJMr7oy/P8Q==
   dependencies:
     "@ant-design/fast-color" "^2.0.6"
