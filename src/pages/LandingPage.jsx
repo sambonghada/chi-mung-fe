@@ -32,6 +32,7 @@ const LandingPage = () => {
             <div className={styles.paperPlaneContainer}>
                 <Lottie options={defaultOptions} height={400} width={400}/>
             </div>
+            <div className={styles.topContainer}>
             <div className={styles.logo_container}>
                 {['배', '우', '멍', '치', '멍'].map((char, index) => (
                     <div key={index} className={styles.logo} style={{backgroundImage: `url(${Shortbtn})`}}>
@@ -42,12 +43,13 @@ const LandingPage = () => {
             <div className={styles.subTitleContainer}>
                 <p className={styles.subTitle}>타자 치면서 배우는 제주어</p>
             </div>
+            </div>
             <button
                 className={`${styles.btn} ${styles.effect5}`}
                 onClick={mainNavigate}
-                data-hover="게임 시작하기"
+                data-hover="혼저옵서예"
             >
-                <div>혼저옵서예</div>
+                <div>게임 시작하기</div>
             </button>
         </div>
     );

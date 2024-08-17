@@ -108,8 +108,15 @@
 /*}*/
 
 .subTitleContainer {
-    position: absolute;
-    top: 450px;
+    /* position: absolute;
+    top: 450px; */
+}
+
+.topContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .subTitle {
@@ -122,6 +129,7 @@
     width: 0;
     animation: typing 1.5s steps(30, end) forwards, blinking 1s infinite;
     animation-delay: 1.5s;
+    margin-top: 20px;
 }
 
 @keyframes typing {

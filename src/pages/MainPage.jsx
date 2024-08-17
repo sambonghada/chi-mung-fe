@@ -39,6 +39,7 @@ const MainPage = () => {
                 })}
                 <button className={styles.white_box} onClick={rankingNavigate}>
                     <FaCrown />
+                    <span>랭킹</span>
                 </button>
             </div>
         </div>
