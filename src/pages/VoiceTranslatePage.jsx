@@ -71,7 +71,7 @@ const VoiceTranslatePage = () => {
             <div className={styles.phoneContainer}>
                 <div className={styles.phoneInnerContainer}>
                     <div className={styles.navContainer}>
-                        <div className={styles.time}>03:00</div>
+                        <div className={styles.time}>{currentTime}</div>
                         <div className={styles.navCenter}>
                             <div className={styles.speaker}></div>
                             <div className={styles.camera}></div>
