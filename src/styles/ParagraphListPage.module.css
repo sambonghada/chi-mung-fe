@@ -1,8 +1,17 @@
+
+@font-face {
+    font-family: 'EF_jejudoldam';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .container {
     background-repeat: no-repeat;
     width: 100vw;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-image: url('../assets/paragraph_bg.png');
@@ -14,12 +23,26 @@
     background-attachment: fixed;
 }
 
+.titleContainer h1{
+    font-family: 'EF_jejudoldam', sans-serif;
+    font-size: 40px;
+    margin: 20px;
+
+}
+
+.titleContainer p {
+    padding: 0;
+    text-align: center;
+    font-size: 18px;
+}
+
 .cards {
     width: 80%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+    margin-top: 20px;
 }
 
 .card {
