@@ -37,10 +37,17 @@ const MainPage = () => {
                         </button>
                     );
                 })}
+                <div className={styles.bottomBtnContainer}>
                 <button className={styles.white_box} onClick={rankingNavigate}>
                     <FaCrown />
                     <span>랭킹</span>
                 </button>
+                <button className={styles.white_box} onClick={rankingNavigate}>
+                    <FaCrown />
+                    <span>랭킹</span>
+                </button>
+                </div>
+                
             </div>
         </div>
     );

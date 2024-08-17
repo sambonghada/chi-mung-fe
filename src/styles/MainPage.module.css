@@ -98,6 +98,14 @@
 /*    margin-bottom: 10px;*/
 /*}*/
 
+.bottomBtnContainer {
+    width: 270px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* background-color: rebeccapurple; */
+}
+
 .white_box {
     border: 3px solid black;
     border-radius: 30px;
