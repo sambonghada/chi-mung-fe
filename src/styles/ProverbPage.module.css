@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+}
+
+.header {
+    height: 100px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #007bff;
+}
+
+.contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 500px;
+    height: calc(100vh - 200px);
+    overflow-y: scroll;
+
+}
+
+.items {
+    width: 500px;
+}
+
+.footer {
+    height: 100px;
+}
