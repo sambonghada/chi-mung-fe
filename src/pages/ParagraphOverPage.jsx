@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import styles from '../styles/ParagraphOverPage.module.css';
 import background from "../assets/paragraph_bg.png";
 import {useLocation, useNavigate} from "react-router-dom";
@@ -9,6 +9,8 @@ import {MdOutlineReplay} from "react-icons/md";
 import LongBtn from "../assets/Longbtn.png";
 import { notification } from 'antd';
 import { PiOrangeDuotone } from "react-icons/pi";
+
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 const ParagraphOverPage = () => {
     const [isBtnDisable, setIsBtnDisable] = useState(false);
@@ -43,7 +45,7 @@ const ParagraphOverPage = () => {
             category: "paragraph",
         };
 
-        fetch("https://k5d881cb764f0a.user-app.krampoline.com/api/scores", {
+        fetch(`${baseURL}/api/scores`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -63,7 +65,7 @@ const ParagraphOverPage = () => {
     const [rankings, setRankings] = useState([]);
     useEffect(() => {
         // Replace 'your-backend-url' with your actual API endpoint
-        axios.get('https://k5d881cb764f0a.user-app.krampoline.com/api/scores/top10/paragraph')
+        axios.get(`${baseURL}/api/scores/top10/paragraph`)
             .then(response => {
                 setRankings(response.data); // Assuming the response data is an array of rankings
             })

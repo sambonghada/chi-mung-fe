@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from '../styles/ParagrpahPage.module.css';
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 const items = [
     {
@@ -111,8 +113,6 @@ const ParagraphPage = () => {
     const [score, setScore] = useState(0);
     const [isGameEnded, setIsGameEnded] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
-    const [pauseDuration, setPauseDuration] = useState(0);
-    const [startTime, setStartTime] = useState(null);
     const [timeLeft, setTimeLeft] = useState(3 * 60); // 3 minutes in seconds
 
     const typingStarted = useRef(false);
@@ -124,7 +124,7 @@ const ParagraphPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`https://k5d881cb764f0a.user-app.krampoline.com/api/tales/${params}`)
+        axios.get(`${baseURL}/api/tales/${params}`)
             .then(response => {
                 if (!response.data) {
                     setProblem(generateLoremIpsum());

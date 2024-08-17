@@ -10,6 +10,8 @@ import RankingItem from "../components/RankingItem.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
+const baseURL = import.meta.env.VITE_BASE_URL;
+
 // You can replace 'PageComponent' with the name of your component
 const RankingPage = () => {
     const [rankings, setRankings] = useState([]);
@@ -19,7 +21,7 @@ const RankingPage = () => {
     useEffect(() => {
         // Replace 'your-backend-url' with your actual API endpoint
         let path = isWordRankFlag ? "word" : "sentence"
-        axios.get(`https://k5d881cb764f0a.user-app.krampoline.com/api/scores/top10/${path}`)
+        axios.get(`${baseURL}/api/scores/top10/${path}`)
             .then(response => {
                 setRankings(response.data); // Assuming the response data is an array of rankings
             })

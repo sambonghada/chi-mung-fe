@@ -57,7 +57,7 @@ const WordOverPage = () => {
       category: "word",
     };
 
-    fetch("https://k5d881cb764f0a.user-app.krampoline.com/api/scores", {
+    fetch(`${baseURL}/api/scores`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
