@@ -45,12 +45,6 @@
     font-size: 30px;
 }
 
-@import url('https://statics.goorm.io/fonts/GoormSans/v1.0.0/GoormSans.min.css');
-
-.myRank {
-    font-family: "Goorm Sans", sans-serif;
-}
-
 .nickInput {
     display: flex;
     flex-direction: row;

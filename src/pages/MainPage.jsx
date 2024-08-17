@@ -1,4 +1,4 @@
-import React from 'react';
+import { useRef } from "react";
 import { FaCrown } from 'react-icons/fa';
 // import LongBtn from '../assets/Longbtn.png';
 // import LongBtnClicked from '../assets/Longbtn_clicked.png';
@@ -6,21 +6,26 @@ import background from '../assets/mainBg.png';
 import styles from '../styles/MainPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { FaBook } from "react-icons/fa";
+import clickSound from "../assets/click.mp3"; // 효과음 추가
 
 const MainPage = () => {
     const navigate = useNavigate();
+    const clickAudioRef = useRef(new Audio(clickSound));
 
     const rankingNavigate = () => {
         navigate('/ranking');
+        clickAudioRef.current.play();
     };
 
     const proberbNavigate = () => {
         navigate('/proverb');
+        clickAudioRef.current.play();
     };
 
 
     const handleNavigation = (path) => {
         navigate(path);
+        clickAudioRef.current.play();
     };
 
     return (

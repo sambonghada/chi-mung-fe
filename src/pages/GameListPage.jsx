@@ -1,26 +1,16 @@
-import React from 'react';
-import { FaCrown } from 'react-icons/fa';
-// import LongBtn from '../assets/Longbtn.png';
-// import LongBtnClicked from '../assets/Longbtn_clicked.png';
+import { useRef } from "react";
 import background from '../assets/mainBg.png';
 import styles from '../styles/MainPage.module.css';
 import { useNavigate } from 'react-router-dom';
-import { FaBook } from "react-icons/fa";
+import clickSound from "../assets/click.mp3"; // 효과음 추가
 
 const GameListPage = () => {
     const navigate = useNavigate();
-
-    const rankingNavigate = () => {
-        navigate('/ranking');
-    };
-
-    const proberbNavigate = () => {
-        navigate('/proverb');
-    };
-
+    const clickAudioRef = useRef(new Audio(clickSound));
 
     const handleNavigation = (path) => {
         navigate(path);
+        clickAudioRef.current.play();
     };
 
     return (
