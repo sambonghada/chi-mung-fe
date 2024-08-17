@@ -1,19 +1,23 @@
-// WordOverPage.jsx
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/WordOverPage.module.css";
 import background from "../assets/background.png";
 import RankingItem from "../components/RankingItem.jsx";
 import Shortbtn from "../assets/Shortbtn.png";
 import LongBtn from "../assets/Longbtn.png";
 import { MdOutlineReplay } from "react-icons/md";
+import { PiOrangeDuotone } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../components/GameContext.jsx";
 import axios from "axios";
+import { notification } from 'antd';
 
 const WordOverPage = () => {
+  const [isBtnDisable, setIsBtnDisable] = useState(false);
+  const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
   const { score } = useGame(); // Context에서 점수 가져오기
   const [username, setUsername] = useState(""); // 닉네임 상태 관리
+  
   const replayNavigate = () => {
     navigate("/word");
   };
@@ -27,6 +31,8 @@ const WordOverPage = () => {
   };
 
   const submitScore = () => {
+    setIsBtnDisable(true);
+    openNotification();
     const data = {
       username: username,
       score: score,
@@ -50,16 +56,24 @@ const WordOverPage = () => {
       });
   };
 
+  const openNotification = () => {
+    api.open({
+      message: '랭킹이 등록되었습니다',
+      description: '랭킹 페이지를 확인해봐요!',
+      icon: <PiOrangeDuotone style={{ color: '#FFBA00' }} />,
+    });
+  };
+
   const [rankings, setRankings] = useState([]);
   useEffect(() => {
     // Replace 'your-backend-url' with your actual API endpoint
     axios.get('https://k5d881cb764f0a.user-app.krampoline.com/api/scores/top10/word')
-        .then(response => {
-          setRankings(response.data); // Assuming the response data is an array of rankings
-        })
-        .catch(error => {
-          console.error('Error fetching rankings:', error);
-        });
+      .then(response => {
+        setRankings(response.data); // Assuming the response data is an array of rankings
+      })
+      .catch(error => {
+        console.error('Error fetching rankings:', error);
+      });
   }, []);
 
   return (
@@ -67,6 +81,7 @@ const WordOverPage = () => {
       className={styles.container}
       style={{ backgroundImage: `url(${background})` }}
     >
+      {contextHolder}
       <div className={styles.topContainer}>
         <span>내 점수: {score}</span> {/* 점수 표시 */}
         <div className={styles.nickInput}>
@@ -76,15 +91,23 @@ const WordOverPage = () => {
             value={username}
             onChange={handleUsernameChange}
           />
-          <button onClick={submitScore}>랭킹 등록</button>{" "}
+          <button
+            onClick={submitScore}
+            disabled={isBtnDisable}
+            style={{
+              backgroundColor: isBtnDisable ? "gray" : "#FFBA00",
+              cursor: isBtnDisable ? "not-allowed" : "pointer"
+            }}
+          >
+            랭킹 등록
+          </button>{" "}
           {/* 점수 등록 버튼 */}
         </div>
       </div>
       <div className={styles.rankingContainer}>
-        {rankings
-          .map((data, index) => (
-            <RankingItem key={index} index={index+1} username={data? data.username : "하이든"} score={data? data.score : 30}/>
-          ))}
+        {rankings.map((data, index) => (
+          <RankingItem key={index} index={index + 1} username={data ? data.username : "하이든"} score={data ? data.score : 30} />
+        ))}
       </div>
       <div className={styles.btnContainer}>
         <button

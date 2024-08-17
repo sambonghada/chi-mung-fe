@@ -1,0 +1,257 @@
+@font-face {
+    font-family: 'EF_jejudoldam';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.container {
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    background-size: cover;
+    background-position: bottom;
+    overflow: hidden;
+}
+
+.title {
+    margin-bottom: 25px;
+    font-family: 'EF_jejudoldam', sans-serif;
+    font-size: 40px;
+}
+
+.phoneContainer {
+    width: 900px;
+    height: 750px;
+    background-color: #282828;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.phoneInnerContainer {
+    width: 860px;
+    height: 730px;
+    /* background-color: rgb(255, 255, 255); */
+    background-color: #F2F2F7;
+    border-top-left-radius: 44px;
+    border-top-right-radius: 44px;
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.navContainer {
+    display: flex;
+    flex-direction: row;
+    
+    justify-content: space-around;
+}
+
+.navCenter {
+    width: 280px;
+    height: 46px;
+    background-color: #282828;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 14px;
+}
+
+.speaker {
+    width: 100px;
+    height: 18px;
+    background-color: black;
+    border-radius: 20px;
+}
+
+.time {
+    width: 200px;
+    font-size: 18px;
+    padding: 22px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.camera {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: black;
+    margin-left: 10px;
+}
+
+.orange {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+
+.contentContainer  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contents {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px 40px;
+}
+
+
+.content {
+    width: 360px;
+    height: 400px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: #f45531 0px 5px, #ed846c 0px 10px, #e8cac4 0px 15px;
+    border: 2px solid rgb(184, 184, 184);
+}
+
+.contentTitle {
+    width: 100%;
+    padding: 20px;
+}
+
+.avatarContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.avatarContainer p {
+    margin-top:8px;
+}
+
+
+
+.speechContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 30px 60px;
+    height: 220px;
+}
+
+.avatar {
+    /* 아바타 컨테이너 스타일 */
+    width: 80px; /* 원하는 크기로 설정 */
+    height: 80px; /* 원하는 크기로 설정 */
+    border-radius: 50%; /* 원형으로 만들기 */
+    overflow: hidden; /* 원 밖으로 나가는 부분 숨기기 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: wheat;
+}
+
+.avatar img {
+    /* 이미지 스타일 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지 크기에 맞춰 잘라내기 */
+}
+
+.bubble {
+    width: 500px;
+}
+
+.speechBubbleLeft {
+    background-image: url('../assets/speech_left.png');
+    width: 400px;
+    height: 350px;
+    background-repeat: no-repeat;
+    
+    background-size: contain;
+    background-position: center top -20px;
+    padding: 40px 40px 10px 70px;
+}
+
+.bubbleContent {
+    margin-top: -1px;
+    width: 300px;
+    height: 140px;
+    font-size: 18px;
+    /* background-color: red; */
+}
+
+.bubbleContentRight {
+    margin-top: 40px;
+    margin-left: 30px;
+    width: 300px;
+    height: 140px;
+    /* background-color: red; */
+}
+
+.speechBubbleRight {
+    background-image: url('../assets/speech_right.png');
+    width: 400px;
+    height: 350px;
+    background-repeat: no-repeat;
+    
+    background-size: contain;
+    background-position: center top -20px;
+}
+
+
+
+.recordBtn {
+    width: 90px;
+    height: 90px;
+    background-color: #FD5431;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    
+    
+}
+
+.recordBtnContainer {
+    width: 320px;
+    height: 92px;
+    
+    /* padding: 70px; */
+    justify-content: center;
+    align-items: flex-start;
+    /* text-align: center; */
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    bottom: 7%;
+    transform: translate(-50%, 0);
+    border-radius: 50px;
+    
+    
+}
+
+.micICon {
+    color: white;
+    font-size: 33px;
+}
+
+.waveContainer {
+    width: 100%;
+    height: 100px;
+    border-radius: 50px;
+    /* margin-top: 20px; */
+}
+
+.soundWave {
+    width: 100%;
+    height: 100%;
+}

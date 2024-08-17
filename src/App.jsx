@@ -11,6 +11,7 @@ import ParagraphOverPage from "./pages/ParagraphOverPage.jsx";
 import { GameProvider } from './components/GameContext.jsx';
 import ParagraphListPage from "./pages/ParagraphListPage.jsx";
 import ProverbPage from "./pages/ProverbPage.jsx";
+import VoiceTranslatePage from './pages/VoiceTranslatePage.jsx';
 
 
 function App() {
@@ -29,11 +30,12 @@ function App() {
                     <Route path="/dictation" element={<DictationPage/>}></Route>
                     <Route path="/ranking" element={<RankingPage/>}></Route>
                     <Route path="/proverb" element={<ProverbPage/>}></Route>
-        </Routes>
+                    <Route path="/voice" element={<VoiceTranslatePage/>}></Route>
+                </Routes>
             </div>
-</BrowserRouter>
-</GameProvider>
-)
+        </BrowserRouter>
+        </GameProvider>
+     )
 }
 
 export default App

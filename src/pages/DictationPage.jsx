@@ -1,9 +1,10 @@
 // DictationPage.js
-import React, {useEffect, useMemo, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import styles from '../styles/DictationPage.module.css';
 import background from '../assets/dictationBg.png';
 import note from '../assets/dictationNote.png';
 import MidBtn from '../assets/midBtn.png';
+// eslint-disable-next-line no-unused-vars
 import { FaQuestionCircle } from "react-icons/fa";
 // import { Tooltip } from 'antd';
 import mockData from '../mockData.js';
@@ -11,9 +12,11 @@ import DictationItem from '../components/DictationItem.jsx';
 import axios from 'axios';
 
 // mockData를 questions 형식으로 변환
+// eslint-disable-next-line no-unused-vars
 const tooltipText = <p>시간제한이 없으니 잘 듣고 띄어쓰기에 유의하여 정답을 입력해 제출해 보세요.
     듣기 버튼을 클릭하면 언제든지 다시 들을 수 있습니다.</p>;
 
+// eslint-disable-next-line no-unused-vars
 const questions = mockData.map((item, index) => ({
     soundurl: item.soundurl,
     meaning: item.meaning,
@@ -32,6 +35,7 @@ const DictationPage = () => {
                     setQuestionList(questions)
                     return;
                 }
+                console.log(response.data);
                 const problems = response.data[0];
                 setQuestionList(problems);
             })
@@ -50,6 +54,7 @@ const DictationPage = () => {
         setResetFlag(prevFlag => prevFlag + 1);  // Trigger a reset
     };
 
+    // eslint-disable-next-line no-unused-vars
     const mergedArrow = useMemo(() => {
         return {
             pointAtCenter: true,

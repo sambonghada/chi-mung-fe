@@ -4,7 +4,6 @@ import { Card } from 'antd';
 import styles from '../styles/ParagraphListPage.module.css';
 
 const { Meta } = Card;
-
 const items = [
     {
         title: '고성목과 산방덕',
@@ -98,6 +97,10 @@ const ParagraphListPage = () => {
 
     return (
         <div className={styles.container}>
+            <div className={styles.titleContainer}>
+                <h1>제주 설화 리스트</h1>
+                <p>20가지의 제주 설화를 타자 연습으로 익혀봐요</p>
+            </div>
             <div className={styles.cards}>
                 {items.map((item, index) => (
                     <Card
