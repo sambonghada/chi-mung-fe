@@ -12,6 +12,8 @@ import { GameProvider } from './components/GameContext.jsx';
 import ParagraphListPage from "./pages/ParagraphListPage.jsx";
 import ProverbPage from "./pages/ProverbPage.jsx";
 import VoiceTranslatePage from './pages/VoiceTranslatePage.jsx';
+import GameListPage from './pages/GameListPage.jsx';
+
 
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
                     <Route path="/ranking" element={<RankingPage/>}></Route>
                     <Route path="/proverb" element={<ProverbPage/>}></Route>
                     <Route path="/voice" element={<VoiceTranslatePage/>}></Route>
+                    <Route path="/game-list" element={<GameListPage/>}></Route>
                 </Routes>
             </div>
         </BrowserRouter>

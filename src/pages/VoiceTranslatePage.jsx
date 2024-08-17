@@ -4,10 +4,9 @@ import background from '../assets/voiceBg.png';
 import girl from '../assets/girl.png';
 import dol from '../assets/dol.png';
 import { PiOrangeFill } from "react-icons/pi";
-import { FaMicrophoneAlt, FaSquare } from "react-icons/fa";  // Import FaSquare icon
+import { FaMicrophoneAlt, FaSquare } from "react-icons/fa";
 import { ReactMic } from 'react-mic';
-import {Tooltip } from 'antd';
-
+import { Tooltip } from 'antd';
 
 const VoiceTranslatePage = () => {
     const [isRecording, setIsRecording] = useState(false);
@@ -20,18 +19,28 @@ const VoiceTranslatePage = () => {
             let hours = now.getHours();
             const minutes = now.getMinutes().toString().padStart(2, '0');
             const ampm = hours >= 12 ? 'PM' : 'AM';
-            hours = hours % 12;
-            hours = hours ? hours : 12; // If hours is 0, set it to 12 (midnight or noon)
-            const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes} ${ampm}`;
+            let formattedHours = hours % 12;
+            formattedHours = formattedHours ? formattedHours : 12; // If formattedHours is 0, set it to 12 (midnight or noon)
+            const formattedTime = `${formattedHours.toString().padStart(2, '0')}:${minutes} ${ampm}`;
             setCurrentTime(formattedTime);
         };
-
+    
         updateTime(); // Set the initial time
         const interval = setInterval(updateTime, 1000); // Update the time every second
-
+    
         return () => clearInterval(interval); // Cleanup the interval on component unmount
     }, []);
+    
 
+    const startRecording = () => {
+        setIsRecording(true);
+        recognition.start();
+    };
+
+    const stopRecording = () => {
+        setIsRecording(false);
+        recognition.stop();
+    };
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
@@ -54,17 +63,6 @@ const VoiceTranslatePage = () => {
         }
 
         setTranscript(finalTranscripts + interimTranscripts);
-        // setTranscript();
-    };
-
-    const startRecording = () => {
-        setIsRecording(true);
-        recognition.start();
-    };
-
-    const stopRecording = () => {
-        setIsRecording(false);
-        recognition.stop();
     };
 
     return (
@@ -73,7 +71,7 @@ const VoiceTranslatePage = () => {
             <div className={styles.phoneContainer}>
                 <div className={styles.phoneInnerContainer}>
                     <div className={styles.navContainer}>
-                    <div className={styles.time}>{currentTime}</div>
+                        <div className={styles.time}>03:00</div>
                         <div className={styles.navCenter}>
                             <div className={styles.speaker}></div>
                             <div className={styles.camera}></div>
@@ -107,27 +105,20 @@ const VoiceTranslatePage = () => {
                         </div>
                     </div>
                     <div className={styles.recordBtnContainer}>
-                        <ReactMic
-                            record={isRecording}
-                            className={styles.soundWave}
-                            strokeColor="#FF4081"
-                            backgroundColor="white"
-                        />
-                        <Tooltip placement="top" title="눌러서 말하기">
-                        <button
-                            className={styles.recordBtn}
-                            onClick={isRecording ? stopRecording : startRecording}>
-                            {isRecording ? (
-                                <FaSquare className={styles.micICon} />  // Change icon when recording
-                            ) : (
-                                <FaMicrophoneAlt className={styles.micICon} />
-                            )}
-                        </button>
+
+                    <Tooltip placement="top" title="눌러서 말하기">
+                            <button
+                                className={styles.recordBtn}
+                                onClick={isRecording ? stopRecording : startRecording}>
+                                {isRecording ? (
+                                    <FaSquare className={styles.micICon} />  // Change icon when recording
+                                ) : (
+                                    <FaMicrophoneAlt className={styles.micICon} />
+                                )}
+                            </button>
                         </Tooltip>
                     </div>
-                    <div className={styles.waveContainer}>
-                       
-                    </div>
+                   
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ import styles from '../styles/MainPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { FaBook } from "react-icons/fa";
 
-const MainPage = () => {
+const GameListPage = () => {
     const navigate = useNavigate();
 
     const rankingNavigate = () => {
@@ -25,13 +25,11 @@ const MainPage = () => {
 
     return (
         <div className={styles.container} style={{ backgroundImage: `url(${background})` }}>
-            <div className={styles.buttons}>
-                {['타자 연습', '받아 쓰기', '제주어 번역'].map((text, index) => {
+            <div className={styles.gamebuttons}>
+                {['단어 연습', '장문 연습'].map((text, index) => {
                     let path = '';
-                    if (text === '타자 연습') path = '/game-list';
-    
-                    if (text === '받아 쓰기') path = '/dictation';
-                    if (text === '제주어 번역') path = '/voice';
+                    if (text === '단어 연습') path = '/word';
+                    if (text === '장문 연습') path = '/paragraphList';
 
                     return (
                         <button
@@ -44,20 +42,11 @@ const MainPage = () => {
                         </button>
                     );
                 })}
-                <div className={styles.bottomBtnContainer}>
-                <button className={styles.white_box} onClick={rankingNavigate}>
-                    <FaCrown />
-                    <span>랭킹</span>
-                </button>
-                <button className={styles.white_box} onClick={proberbNavigate}>
-                    <FaBook />
-                    <span>속담사전</span>
-                </button>
-                </div>
+            
                 
             </div>
         </div>
     );
 };
 
-export default MainPage;
+export default GameListPage;
