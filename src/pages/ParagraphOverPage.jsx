@@ -7,8 +7,12 @@ import RankingItem from "../components/RankingItem.jsx";
 import Shortbtn from "../assets/Shortbtn.png";
 import {MdOutlineReplay} from "react-icons/md";
 import LongBtn from "../assets/Longbtn.png";
+import { notification } from 'antd';
+import { PiOrangeDuotone } from "react-icons/pi";
 
 const ParagraphOverPage = () => {
+    const [isBtnDisable, setIsBtnDisable] = useState(false);
+  const [api, contextHolder] = notification.useNotification();
     const location = useLocation();
     // const { score } = location.state || { score : 0};
     const score = location.state.score;
@@ -23,7 +27,16 @@ const ParagraphOverPage = () => {
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
     };
+    const openNotification = () => {
+        api.open({
+          message: '랭킹이 등록되었습니다',
+          description: '랭킹 페이지를 확인해봐요!',
+          icon: <PiOrangeDuotone style={{ color: '#FFBA00' }} />,
+        });
+      };
     const submitScore = () => {
+        setIsBtnDisable(true);
+        openNotification();
         const data = {
             username: username,
             score: score,
@@ -64,6 +77,7 @@ const ParagraphOverPage = () => {
             className={styles.container}
             style={{ backgroundImage: `url(${background})` }}
         >
+            {contextHolder}
             <div className={styles.topContainer}>
                 <span>내 점수: {score}</span> {/* 점수 표시 */}
                 <div className={styles.nickInput}>
@@ -73,7 +87,14 @@ const ParagraphOverPage = () => {
                         value={username}
                         onChange={handleUsernameChange}
                     />
-                    <button onClick={submitScore}>랭킹 등록</button>{" "}
+                    <button 
+                    onClick={submitScore}
+                    disabled={isBtnDisable}
+            style={{
+              backgroundColor: isBtnDisable ? "gray" : "#FFBA00",
+              cursor: isBtnDisable ? "not-allowed" : "pointer"
+            }}
+                    >랭킹 등록</button>{" "}
                     {/* 점수 등록 버튼 */}
                 </div>
             </div>
