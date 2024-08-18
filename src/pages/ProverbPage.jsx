@@ -2,6 +2,7 @@ import styles from "../styles/ProverbPage.module.css";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Collapse, message, Pagination} from "antd";
+import background from '../assets/proverbBg.png';
 
 function parseItems(originList) {
     return originList.map((item,index)=>{
@@ -49,9 +50,9 @@ const ProverbPage = () => {
     };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} style={{ backgroundImage: `url(${background})` }}>
             <div className={styles.header}>
-                header
+                제주도 속담사전
             </div>
             <div className={styles.contents}>
                 <Collapse className={styles.items} accordion items={currentItems}/>
