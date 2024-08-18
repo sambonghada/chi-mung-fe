@@ -16,6 +16,8 @@ const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswer
         setAnswer(e.target.value);
     };
 
+    const MAX_PROBLEM_TEXT_SIZE = 15
+
     const playAudio = () => {
         if (audioSrc) {
             const sound = new Howl({
@@ -47,8 +49,9 @@ const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswer
                 />
             )}
             <div className={styles.itemTopContainer}>
-                <div className={styles.questionContainer}>
-                    <span className={styles.question}>{index + 1}번 뜻 : {description}</span>
+                <div className={styles.question}>
+                    <span className={styles.ellipsisText}>{index + 1}번 표준어: {description.length > MAX_PROBLEM_TEXT_SIZE ? description.substring(0,MAX_PROBLEM_TEXT_SIZE) + "..." : description}</span>
+                    <span className={ description.length > MAX_PROBLEM_TEXT_SIZE  ? styles.fullText : styles.hidden }>{description}</span>
                 </div>
                 <div className={styles.soundInput}>
                     <button className={styles.playButton} onClick={playAudio}><HiSpeakerWave /></button>
@@ -62,7 +65,6 @@ const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswer
                     />
                 </div>
             </div>
-
             {showAnswers && <div className={styles.result}>정답: {correctAnswer}</div>}
         </div>
     );

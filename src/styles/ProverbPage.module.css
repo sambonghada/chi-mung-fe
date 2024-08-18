@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'EF_jejudoldam';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -14,16 +21,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #007bff;
+    font-family: 'EF_jejudoldam', sans-serif;
+    font-size: 40px;
+    /* background-color: #007bff; */
+    color: #FFFDEB;
+    -webkit-text-stroke: 2px #000;
+    text-shadow: 4px 4px 0px #000;
 }
 
 .contents {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    width: 500px;
-    height: calc(100vh - 200px);
+    width: 600px;
+    height: calc(100vh - 160px);
     overflow-y: scroll;
+    /* background-color: white; */
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+
+
+
+    background: rgba( 255, 255, 255, 0.8 );
+/* box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ); */
+backdrop-filter: blur( 8.5px );
+-webkit-backdrop-filter: blur( 8.5px );
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+
 
 }
 
@@ -32,5 +58,6 @@
 }
 
 .footer {
+    margin-top: 20px;
     height: 100px;
 }

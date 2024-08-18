@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { useGame } from "../components/GameContext.jsx";
 import axios from "axios";
 import { notification } from 'antd';
+import { Tooltip } from 'antd';
+import { MdReplay } from "react-icons/md";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -21,6 +23,7 @@ const WordOverPage = () => {
   const [username, setUsername] = useState(""); // 닉네임 상태 관리
   const [rankings, setRankings] = useState([]);
   const [myRank, setMyRank] = useState(null);  // 내 등수 상태 관리
+  const [nicknameData, setNicknameData] = useState({ nickname: "", meaning: "" }); // 닉네임과 의미 상태 관리
 
   const replayNavigate = () => {
     navigate("/word");
@@ -32,6 +35,10 @@ const WordOverPage = () => {
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
+  };
+
+  const handleNicknametagClick = () => {
+    setUsername(nicknameData.nickname); // 닉네임을 입력 필드에 설정
   };
 
   const fetchRankings = () => {
@@ -46,6 +53,17 @@ const WordOverPage = () => {
         .catch(error => {
           console.error('Error fetching rankings:', error);
         });
+  };
+
+  const fetchNickname = () => {
+    axios
+      .get(`${baseURL}/api/nickname`)
+      .then(response => {
+        setNicknameData(response.data);
+      })
+      .catch(error => {
+        console.error("Error fetching nickname:", error);
+      });
   };
 
   const submitScore = () => {
@@ -84,6 +102,7 @@ const WordOverPage = () => {
 
   useEffect(() => {
     fetchRankings();
+    fetchNickname(); // 컴포넌트가 마운트될 때 닉네임을 가져옵니다
   }, []);
 
   return (
@@ -97,6 +116,19 @@ const WordOverPage = () => {
             <span className={styles.myScore}>내 점수: {score}</span> {/* 점수 표시 */}
             <span className={styles.myRank}>내 등수: {myRank}</span> {/* 내 등수 표시 */}
           </div>
+          <div className={styles.nicknameInputContainer}>
+            <div className={styles.nickRecommender}>
+              <span>AI가 추천하는 닉네임 수식어 |</span>
+              <Tooltip title={`표준어: ${nicknameData.meaning}`}>
+                <div className={styles.nicknametag} onClick={handleNicknametagClick}>
+                  {nicknameData.nickname}
+                </div>
+              </Tooltip>
+              <div className={styles.newBtn} onClick={fetchNickname}>
+                <MdReplay/>
+              </div>
+            </div>
+            
           <div className={styles.nickInput}>
             <input
                 type="text"
@@ -114,6 +146,7 @@ const WordOverPage = () => {
             >
               랭킹 등록
             </button>
+            </div>
           </div>
         </div>
         <div className={styles.rankingContainer}>

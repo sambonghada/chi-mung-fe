@@ -6,7 +6,9 @@ import background from '../assets/mainBg.png';
 import styles from '../styles/MainPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { FaBook } from "react-icons/fa";
-import clickSound from "../assets/click.mp3"; // 효과음 추가
+import clickSound from "../assets/click.mp3"; 
+
+
 
 const MainPage = () => {
     const navigate = useNavigate();
@@ -21,7 +23,7 @@ const MainPage = () => {
         navigate('/proverb');
         clickAudioRef.current.play();
     };
-
+    
 
     const handleNavigation = (path) => {
         navigate(path);
@@ -34,7 +36,6 @@ const MainPage = () => {
                 {['타자 연습', '받아 쓰기', '제주어 번역'].map((text, index) => {
                     let path = '';
                     if (text === '타자 연습') path = '/game-list';
-    
                     if (text === '받아 쓰기') path = '/dictation';
                     if (text === '제주어 번역') path = '/voice';
 
@@ -47,6 +48,8 @@ const MainPage = () => {
                         >
                             <p className={styles.LongBtn_text}>{text}</p>
                         </button>
+
+        
                     );
                 })}
                 <div className={styles.bottomBtnContainer}>

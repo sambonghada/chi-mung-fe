@@ -39,7 +39,13 @@
     align-items: center;
 }
 
+.btnContainer {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
 
+.helpIcon {}
 
 .LongBtn {
     background-size: contain  ;
