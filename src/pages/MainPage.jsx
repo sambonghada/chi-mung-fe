@@ -7,7 +7,7 @@ import styles from '../styles/MainPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { FaBook } from "react-icons/fa";
 import clickSound from "../assets/click.mp3"; 
-import { AiTwotoneQuestionCircle } from "react-icons/ai";
+
 
 
 const MainPage = () => {
@@ -48,6 +48,7 @@ const MainPage = () => {
                         >
                             <p className={styles.LongBtn_text}>{text}</p>
                         </button>
+
         
                     );
                 })}
