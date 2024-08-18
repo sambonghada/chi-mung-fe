@@ -257,22 +257,39 @@ function WordPage() {
             const wordElement = document.getElementById(word.word);
             if (wordElement) {
               const rect = wordElement.getBoundingClientRect();
-              if (rect.top > window.innerHeight) {
-                // 이미 제거된 단어인지 확인
+
+              // moveDown인 경우 아래쪽으로 벗어날 때만 처리
+              if (word.animation === "moveDown" && rect.top > window.innerHeight) {
                 if (!word.removed) {
-                  // 단어가 화면 밖으로 나가면 오답 처리하고 fallingWords에서 제거
                   const newToast = {
                     id: toastId.current++,
-                    message: `${word.word} - ${word.meaning}`,  // 틀린 단어도 단어와 뜻을 함께 표시
+                    message: `${word.word} - ${word.meaning}`, // 틀린 단어도 단어와 뜻을 함께 표시
                     correct: false,
                   };
 
                   setToasts((prevToasts) => [newToast, ...prevToasts]);
 
-                  setHealth((prevHealth) => prevHealth - 20);
+                  setHealth((prevHealth) => prevHealth - 20); // health 20 감소
 
-                  // word 객체에 removed 속성 추가
-                  word.removed = true;
+                  word.removed = true; // word 객체에 removed 속성 추가
+                }
+                return false; // 단어를 필터링해서 fallingWords에서 제거
+              }
+
+              // moveUp인 경우 위쪽으로 벗어날 때만 처리
+              if (word.animation === "moveUp" && rect.bottom < 0) {
+                if (!word.removed) {
+                  const newToast = {
+                    id: toastId.current++,
+                    message: `${word.word} - ${word.meaning}`, // 틀린 단어도 단어와 뜻을 함께 표시
+                    correct: false,
+                  };
+
+                  setToasts((prevToasts) => [newToast, ...prevToasts]);
+
+                  setHealth((prevHealth) => prevHealth - 20); // health 20 감소
+
+                  word.removed = true; // word 객체에 removed 속성 추가
                 }
                 return false; // 단어를 필터링해서 fallingWords에서 제거
               }
@@ -285,6 +302,7 @@ function WordPage() {
     const intervalId = setInterval(checkFallingWords, 100);
     return () => clearInterval(intervalId);
   }, []);
+
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
