@@ -20,7 +20,7 @@ const RankingPage = () => {
 
     useEffect(() => {
         // Replace 'your-backend-url' with your actual API endpoint
-        let path = isWordRankFlag ? "word" : "sentence"
+        let path = isWordRankFlag ? "word" : "paragraph"
         axios.get(`${baseURL}/api/scores/top10/${path}`)
             .then(response => {
                 setRankings(response.data); // Assuming the response data is an array of rankings
