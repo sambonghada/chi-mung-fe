@@ -47,8 +47,8 @@ const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswer
                 />
             )}
             <div className={styles.itemTopContainer}>
-                <div className={styles.question}>
-                    <span>{index + 1}번 표준어: {description}</span>
+                <div className={styles.questionContainer}>
+                    <span className={styles.question}>{index + 1}번 뜻 : {description}</span>
                 </div>
                 <div className={styles.soundInput}>
                     <button className={styles.playButton} onClick={playAudio}><HiSpeakerWave /></button>
@@ -62,6 +62,7 @@ const DictationItem = ({ audioSrc, description, correctAnswer, index, showAnswer
                     />
                 </div>
             </div>
+
             {showAnswers && <div className={styles.result}>정답: {correctAnswer}</div>}
         </div>
     );

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import BackgroundImage from '../assets/landingBg.png';
 import CornerLeaf from '../assets/landingCorner.png';
 import Branch from '../assets/landingBranch.png';
@@ -8,6 +8,7 @@ import Shortbtn from '../assets/Shortbtn.png';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/LandingPage.module.css';
 import clickSound from "../assets/click.mp3"; // 효과음 추가
+import backgroundSound from "../assets/main.mp3"; // 배경음 추가
 
 const defaultOptions = {
     loop: true,
@@ -21,6 +22,20 @@ const defaultOptions = {
 const LandingPage = () => {
     const navigate = useNavigate();
     const clickAudioRef = useRef(new Audio(clickSound));
+    const backgroundAudioRef = useRef(new Audio(backgroundSound));
+
+    useEffect(() => {
+        // 배경음악 재생
+        backgroundAudioRef.current.loop = true;  // 반복 재생
+        backgroundAudioRef.current.volume = 0.5;  // 볼륨 설정 (0.0 ~ 1.0)
+        backgroundAudioRef.current.play();
+
+        // 컴포넌트 언마운트 시 배경음악 정지
+        return () => {
+            backgroundAudioRef.current.pause();
+            backgroundAudioRef.current.currentTime = 0; // 음악의 재생 시간을 0으로 리셋
+        };
+    }, []);
 
     const mainNavigate = () => {
         navigate('/main');

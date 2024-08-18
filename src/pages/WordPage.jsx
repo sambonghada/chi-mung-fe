@@ -7,6 +7,7 @@ import heartIMG from "../assets/heart.png";
 import FruitStemIMG from "../assets/FruitStem.png";
 import styles from '../styles/WordPage.module.css';
 import correctSound from "../assets/word-correct.mp3"; // 효과음 추가
+import backgroundSound from "../assets/word.mp3";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -41,6 +42,20 @@ const useKeyboardAnimation = () => {
   const [pressedKey, setPressedKey] = useState(null);
   const [isLeftShift, setIsLeftShift] = useState(false);
   const [isRightShift, setIsRightShift] = useState(false);
+  const backgroundAudioRef = useRef(new Audio(backgroundSound));
+
+  useEffect(() => {
+    // 배경음악 재생
+    backgroundAudioRef.current.loop = true;  // 반복 재생
+    backgroundAudioRef.current.volume = 0.5;  // 볼륨 설정 (0.0 ~ 1.0)
+    backgroundAudioRef.current.play();
+
+    // 컴포넌트 언마운트 시 배경음악 정지
+    return () => {
+      backgroundAudioRef.current.pause();
+      backgroundAudioRef.current.currentTime = 0; // 음악의 재생 시간을 0으로 리셋
+    };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
