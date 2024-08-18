@@ -83,18 +83,15 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 20px;
-
-}
-
-.question {
-    display: flex;
-    /*justify-content: space-around;*/
     align-items: center;
-    font-size: 16px;
-
-
+    padding: 0 20px;
 }
+
+/*.question {*/
+/*    display: flex;*/
+/*    !*justify-content: space-around;*!*/
+/*    align-items: center;*/
+/*}*/
 
 .playButton {
     background: #93D4E6;
@@ -169,3 +166,36 @@
 /*background-repeat: no-repeat;*/
 /*background-position: center center;*/
 /*margin-left: 20px;*/
+
+.ellipsisText {
+    font-size: 16px;
+    /*display: inline-block; !* 블록 수준으로 변환 *!*/
+    max-width: 100%; /* 원하는 최대 너비 설정 */
+    white-space: nowrap; /* 텍스트를 한 줄로 유지 */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
+    text-overflow: ellipsis; /* 말줄임표(...) 적용 */
+}
+
+.fullText {
+    display: none; /* 기본적으로 텍스트 숨김 */
+    position: absolute; /* 텍스트가 겹치지 않도록 절대 위치 */
+    background-color: #fff; /* 텍스트 배경색 (필요에 따라 설정) */
+    padding: 5px;
+    border: 1px solid #ccc;
+    z-index: 10; /* 다른 요소 위에 표시되도록 설정 */
+}
+
+.question {
+    position: relative; /* 상대 위치를 설정하여 자식의 절대 위치 설정 */
+    display: inline-block; /* 내용이 있는 요소로 만듦 */
+}
+
+.question:hover .fullText {
+    /*display: inline-block; !* 마우스 호버 시 텍스트 표시 *!*/
+    display: block;
+    font-size: 12px;
+}
+
+.hidden {
+    display: none;
+}
