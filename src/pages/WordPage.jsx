@@ -269,7 +269,7 @@ function WordPage() {
 
                   setToasts((prevToasts) => [newToast, ...prevToasts]);
 
-                  setHealth((prevHealth) => prevHealth - 10);
+                  setHealth((prevHealth) => prevHealth - 20);
 
                   // word 객체에 removed 속성 추가
                   word.removed = true;
