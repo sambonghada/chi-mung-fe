@@ -23,9 +23,18 @@
 |:---:|:---:|
 |![사이트 접속 + 메인+ 랭킹 (online-video-cutter com)](https://github.com/user-attachments/assets/5a8ca9c5-148c-46fb-986d-6eb4ea44a86a)|![받아쓰기](https://github.com/user-attachments/assets/b931fa44-90a9-48fe-a114-bc7382bdf291)|
 
+
+
 |받아쓰기 |속담사전|
 |:---:|:---:|
-|![사이트 접속 + 메인+ 랭킹 (online-video-cutter com)](https://github.com/user-attachments/assets/5a8ca9c5-148c-46fb-986d-6eb4ea44a86a)|![받아쓰기](https://github.com/user-attachments/assets/b931fa44-90a9-48fe-a114-bc7382bdf291)|
+|![받아쓰기](https://github.com/user-attachments/assets/ef1054fb-a945-4cd5-befe-ff952d13a296)|![타자-장문연습 (online-video-cutter com) (1)](https://github.com/user-attachments/assets/d1bb013b-39d3-48cb-98c6-75503644134d)|
+
+
+
+
+
+
+
 
 
 ## 🛠️ Getting Started
@@ -42,6 +51,7 @@
    ```sh
    npm run dev
    ```
+
    
 ## 👨‍👩‍👧‍👦 Developer
 *  **임정현** ([limzzum](https://github.com/limzzum)): DevOps
