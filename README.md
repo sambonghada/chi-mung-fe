@@ -15,23 +15,43 @@
 
 
 ## 🕹️ Main Feature
-|랜딩 / 전체랭킹 |단어연습 / 랭킹등록|
-|:---:|:---:|
-|![사이트 접속 + 메인+ 랭킹 (online-video-cutter com)](https://github.com/user-attachments/assets/5a8ca9c5-148c-46fb-986d-6eb4ea44a86a)|![타자-단어연습+랭킹등록 (online-video-cutter com)](https://github.com/user-attachments/assets/8bf7e980-00f4-45b8-81a0-6170935e452d)|
+<table>
+  <tr>
+    <th>랜딩 / 전체랭킹</th>
+    <th>단어연습 / 랭킹등록</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/5a8ca9c5-148c-46fb-986d-6eb4ea44a86a" width="478px" alt="랜딩/전체랭킹 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/8bf7e980-00f4-45b8-81a0-6170935e452d" width="478px" alt="단어연습/랭킹등록 이미지"></td>
+  </tr>
+  <tr>
+    <th>장문연습</th>
+    <th>제주어 번역</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/00e689aa-7aca-4fa7-b148-a3264fc4bf13" width="478px" alt="장문연습 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/b931fa44-90a9-48fe-a114-bc7382bdf291" width="478px" alt="제주어 번역 이미지"></td>
+  </tr>
+  <tr>
+    <th>받아쓰기</th>
+    <th>속담사전</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/ef1054fb-a945-4cd5-befe-ff952d13a296" width="478px" alt="받아쓰기 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/d1bb013b-39d3-48cb-98c6-75503644134d" width="478px" alt="속담사전 이미지"></td>
+  </tr>
+</table>
 
-|장문연습 |제주어 번역|
-|:---:|:---:|
-|![사이트 접속 + 메인+ 랭킹 (online-video-cutter com)](https://github.com/user-attachments/assets/5a8ca9c5-148c-46fb-986d-6eb4ea44a86a)|![받아쓰기](https://github.com/user-attachments/assets/b931fa44-90a9-48fe-a114-bc7382bdf291)|
 
-
-|받아쓰기 |속담사전|
-|:---:|:---:|
-|![받아쓰기](https://github.com/user-attachments/assets/ef1054fb-a945-4cd5-befe-ff952d13a296)|![타자-장문연습 (online-video-cutter com) (1)](https://github.com/user-attachments/assets/d1bb013b-39d3-48cb-98c6-75503644134d)|
 
 
 
 ## 🌐 Architecture
 ![image](https://github.com/user-attachments/assets/8d4008f0-54d2-42fc-9dc6-8afa549ec731)
+
+
+
+
 
 
 
