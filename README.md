@@ -1,4 +1,4 @@
-## 🍊 치멍배우멍 💻
+## 🍊 치멍배우멍 
 ![readme-003 (1)](https://github.com/user-attachments/assets/2858d191-4f28-4322-bb76-b1f13b47fff3)
 <div align=center> 
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> 
@@ -9,8 +9,9 @@
 ## 📖 Description
 ‘타자를 치면서(치멍) 제주를 배운다(배우멍)’는 의미의 제주도 방언으로, </br></br>
 게임 요소를 더해 제주어를 친숙하게 인식하게 하고자 만들었어요.</br>
-* [프론트엔드 레포지토리 바로가기](https://github.com/sambonghada/chi-mung-fe)
-* [백엔드 레포지토리 바로가기](https://github.com/sambonghada/chi-mung-be)
+* [치멍 배우멍 바로가기](https://judy-carter-hyden-silvia-snorlax.site/)→
+* [프론트엔드 레포지토리 바로가기](https://github.com/sambonghada/chi-mung-fe)→
+* [백엔드 레포지토리 바로가기](https://github.com/sambonghada/chi-mung-be)→
   
 
 
@@ -73,7 +74,7 @@
    ```
 
    
-## 👨‍👩‍👧‍👦 Developer
+## 🛋️ Developers
 *  **임정현** ([limzzum](https://github.com/limzzum)): DevOps
 *  **김대건** ([kimdaegeon0918](https://github.com/kimdaegeon0918)): BE
 *  **김수민** ([moolmin](https://github.com/moolmin)): FE, UI/UX
