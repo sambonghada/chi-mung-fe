@@ -9,16 +9,14 @@
 ## 📖 Description
 ‘타자를 치면서(치멍) 제주를 배운다(배우멍)’는 의미의 제주도 방언으로, </br></br>
 게임 요소를 더해 제주어를 친숙하게 인식하게 하고자 만들었어요.</br>
-* [치멍 배우멍 바로가기](https://judy-carter-hyden-silvia-snorlax.site/)→
+* [치멍 배우멍 서비스 바로가기](https://judy-carter-hyden-silvia-snorlax.site/)→
 * [프론트엔드 레포지토리 바로가기](https://github.com/sambonghada/chi-mung-fe)→
 * [백엔드 레포지토리 바로가기](https://github.com/sambonghada/chi-mung-be)→
 
-![008](https://github.com/user-attachments/assets/92ced1b6-2725-4828-9e1a-5104146bbb8c)
-![009](https://github.com/user-attachments/assets/d3e3cb8e-ff66-40b7-8f16-41957a1888ce)
-![010](https://github.com/user-attachments/assets/c7676efd-e7e0-4cf1-bc5d-553a5f076302)
-![011](https://github.com/user-attachments/assets/bf6c4dc4-d2f5-4c57-b9e6-ae69a3affff9)
-
-
+![007](https://github.com/user-attachments/assets/59b9f856-d638-42da-ab73-34eac6367634)
+![제목을-입력해주세요_-008](https://github.com/user-attachments/assets/8060ff7d-37ac-4d8c-938f-f517409266f8)
+![009](https://github.com/user-attachments/assets/1e3f5257-8619-4e96-b240-d2d4c957e88a)
+![010](https://github.com/user-attachments/assets/9ef11497-6298-464d-98f2-4556fa672c2f)
 
 
 ## 🕹️ Main Feature
@@ -78,7 +76,7 @@
    ```sh
    npm run dev
    ```
-
+<br />
    
 ## 🛋️ Developers
 *  **임정현** ([limzzum](https://github.com/limzzum)): DevOps
