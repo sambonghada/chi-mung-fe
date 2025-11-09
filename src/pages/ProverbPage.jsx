@@ -21,7 +21,7 @@ const ProverbPage = () => {
     const [pageSize, setPageSize] = useState(10);
     useEffect(()=> {
         // const serverURL = import.meta.env.BASE_URL
-        const serverURL = "https://judy-carter-hyden-silvia-snorlax.site"
+        const serverURL = "https://chi-mung.site"
         const fetchProverbs = async () => {
             try {
                 const response = await axios.get(`${serverURL}/api/proverb/list`);
